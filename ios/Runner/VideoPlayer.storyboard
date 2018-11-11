@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Video Player View Controller-->
+        <scene sceneID="10P-dc-jod">
+            <objects>
+                <viewController storyboardIdentifier="VideoPlayerViewController" id="b3x-Vb-SO4" customClass="VideoPlayerViewController" customModule="Runner" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rjU-yJ-fFd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1RC-ym-gCq">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="1RC-ym-gCq" secondAttribute="height" multiplier="16:9" id="rpy-Rm-bN7"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Yz-mF-n6k" customClass="VideoController" customModule="Runner" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="1Yz-mF-n6k" secondAttribute="height" multiplier="16:9" id="iZD-6z-EyA"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1Yz-mF-n6k" firstAttribute="leading" secondItem="aqf-wy-bf2" secondAttribute="leading" id="67J-tx-0VK"/>
+                            <constraint firstItem="1Yz-mF-n6k" firstAttribute="trailing" secondItem="aqf-wy-bf2" secondAttribute="trailing" id="EHh-iq-M87"/>
+                            <constraint firstItem="1RC-ym-gCq" firstAttribute="top" secondItem="rjU-yJ-fFd" secondAttribute="top" id="Tnv-86-CyF"/>
+                            <constraint firstItem="1RC-ym-gCq" firstAttribute="leading" secondItem="aqf-wy-bf2" secondAttribute="leading" id="ej3-xu-X3a"/>
+                            <constraint firstItem="1Yz-mF-n6k" firstAttribute="top" secondItem="rjU-yJ-fFd" secondAttribute="top" id="hPc-ZQ-CKg"/>
+                            <constraint firstItem="1RC-ym-gCq" firstAttribute="trailing" secondItem="aqf-wy-bf2" secondAttribute="trailing" id="hhK-oa-ORj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="aqf-wy-bf2"/>
+                    </view>
+                    <connections>
+                        <outlet property="controllerView" destination="1Yz-mF-n6k" id="w2l-rV-Imo"/>
+                        <outlet property="playView" destination="1RC-ym-gCq" id="Nj1-nf-BoJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RGH-19-TSM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-23.199999999999999" y="-230.73463268365819"/>
+        </scene>
+    </scenes>
+</document>
