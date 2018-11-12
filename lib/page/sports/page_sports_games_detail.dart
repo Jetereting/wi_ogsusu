@@ -163,12 +163,12 @@ class _SportsGamesDetailPageState extends State<SportsGamesDetailPage> with Auto
           _sportGameChannelList.length > 0 ?
           new RefreshIndicator(
             child: new ListView.builder(
-              itemCount: _sportGameChannelList.length,
+              itemCount: _sportGameChannelList.length * 2,
               itemBuilder: (BuildContext context, int index) {
                 if(index.isOdd){
                   return const Divider();
                 }
-                return buildSportGameChannelItem(_sportGameChannelList[index]);
+                return buildSportGameChannelItem(_sportGameChannelList[index ~/ 2]);
               },
             ),
             onRefresh: _getGameChannelData,

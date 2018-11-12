@@ -18,34 +18,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1RC-ym-gCq">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AHo-6Z-5Ns">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1RC-ym-gCq">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Yz-mF-n6k" customClass="VideoController" customModule="Runner" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="1RC-ym-gCq" secondAttribute="height" multiplier="16:9" id="rpy-Rm-bN7"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Yz-mF-n6k" customClass="VideoController" customModule="Runner" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="1Yz-mF-n6k" secondAttribute="height" multiplier="16:9" id="iZD-6z-EyA"/>
+                                    <constraint firstAttribute="trailing" secondItem="1Yz-mF-n6k" secondAttribute="trailing" id="7Kb-NC-eec"/>
+                                    <constraint firstItem="1RC-ym-gCq" firstAttribute="top" secondItem="AHo-6Z-5Ns" secondAttribute="top" id="JSH-YU-QGt"/>
+                                    <constraint firstAttribute="bottom" secondItem="1RC-ym-gCq" secondAttribute="bottom" id="KWn-gO-Psu"/>
+                                    <constraint firstItem="1Yz-mF-n6k" firstAttribute="leading" secondItem="AHo-6Z-5Ns" secondAttribute="leading" id="RmH-J8-AZi"/>
+                                    <constraint firstItem="1Yz-mF-n6k" firstAttribute="top" secondItem="AHo-6Z-5Ns" secondAttribute="top" id="Wm0-CC-pDL"/>
+                                    <constraint firstAttribute="bottom" secondItem="1Yz-mF-n6k" secondAttribute="bottom" id="XT5-NJ-9jp"/>
+                                    <constraint firstItem="1RC-ym-gCq" firstAttribute="leading" secondItem="AHo-6Z-5Ns" secondAttribute="leading" id="k1a-8U-6W9"/>
+                                    <constraint firstAttribute="trailing" secondItem="1RC-ym-gCq" secondAttribute="trailing" id="rl1-TJ-MDM"/>
+                                    <constraint firstAttribute="width" secondItem="AHo-6Z-5Ns" secondAttribute="height" multiplier="16:9" id="u22-oh-G7o"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="1Yz-mF-n6k" firstAttribute="leading" secondItem="aqf-wy-bf2" secondAttribute="leading" id="67J-tx-0VK"/>
-                            <constraint firstItem="1Yz-mF-n6k" firstAttribute="trailing" secondItem="aqf-wy-bf2" secondAttribute="trailing" id="EHh-iq-M87"/>
-                            <constraint firstItem="1RC-ym-gCq" firstAttribute="top" secondItem="rjU-yJ-fFd" secondAttribute="top" id="Tnv-86-CyF"/>
-                            <constraint firstItem="1RC-ym-gCq" firstAttribute="leading" secondItem="aqf-wy-bf2" secondAttribute="leading" id="ej3-xu-X3a"/>
-                            <constraint firstItem="1Yz-mF-n6k" firstAttribute="top" secondItem="rjU-yJ-fFd" secondAttribute="top" id="hPc-ZQ-CKg"/>
-                            <constraint firstItem="1RC-ym-gCq" firstAttribute="trailing" secondItem="aqf-wy-bf2" secondAttribute="trailing" id="hhK-oa-ORj"/>
+                            <constraint firstItem="AHo-6Z-5Ns" firstAttribute="trailing" secondItem="aqf-wy-bf2" secondAttribute="trailing" id="YGW-tb-GsU"/>
+                            <constraint firstItem="AHo-6Z-5Ns" firstAttribute="top" secondItem="rjU-yJ-fFd" secondAttribute="top" id="cUM-F3-JdH"/>
+                            <constraint firstItem="AHo-6Z-5Ns" firstAttribute="leading" secondItem="aqf-wy-bf2" secondAttribute="leading" id="uyb-I1-Clu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aqf-wy-bf2"/>
                     </view>
                     <connections>
-                        <outlet property="controllerView" destination="1Yz-mF-n6k" id="w2l-rV-Imo"/>
+                        <outlet property="contentView" destination="AHo-6Z-5Ns" id="d3A-rI-9kj"/>
+                        <outlet property="controllerView" destination="1Yz-mF-n6k" id="RDq-WU-1E2"/>
                         <outlet property="playView" destination="1RC-ym-gCq" id="Nj1-nf-BoJ"/>
                     </connections>
                 </viewController>

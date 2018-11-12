@@ -27,7 +27,18 @@
 		CD1998A6219017A400AFAE8A /* VideoPlayer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD1998A5219017A400AFAE8A /* VideoPlayer.storyboard */; };
 		CD1998AA2190212400AFAE8A /* TimeUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1998A92190212400AFAE8A /* TimeUtil.swift */; };
 		CD1998AC219021F900AFAE8A /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD1998AB219021F900AFAE8A /* StringExtension.swift */; };
-		CDA48D4721974A6600911766 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA48D4621974A6600911766 /* PlayerViewController.swift */; };
+		CD352FCA2198706A00597628 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CD352FC92198706A00597628 /* libstdc++.tbd */; };
+		CD352FCC2198707A00597628 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD352FCB2198707A00597628 /* MediaPlayer.framework */; };
+		CD352FCE2198708600597628 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD352FCD2198708600597628 /* MobileCoreServices.framework */; };
+		CD352FD02198708F00597628 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD352FCF2198708F00597628 /* OpenGLES.framework */; };
+		CD352FD22198709700597628 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD352FD12198709700597628 /* QuartzCore.framework */; };
+		CD352FD4219870A800597628 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD352FD3219870A800597628 /* VideoToolbox.framework */; };
+		CD352FD6219870BA00597628 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CD352FD5219870BA00597628 /* libbz2.tbd */; };
+		CD352FD8219870C500597628 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = CD352FD7219870C500597628 /* libz.tbd */; };
+		CD352FDA219870D000597628 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD352FD9219870D000597628 /* AudioToolbox.framework */; };
+		CD352FDC219870DA00597628 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD352FDB219870DA00597628 /* AVFoundation.framework */; };
+		CD352FDE219870E500597628 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD352FDD219870E500597628 /* CoreGraphics.framework */; };
+		CD352FE02198726500597628 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD352FDF2198726500597628 /* CoreMedia.framework */; };
 		CDF5E669219037FB00FEB7BE /* VideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF5E668219037FB00FEB7BE /* VideoController.swift */; };
 		CDF5E66B21903CF700FEB7BE /* ControllerUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF5E66A21903CF700FEB7BE /* ControllerUtil.swift */; };
 /* End PBXBuildFile section */
@@ -72,7 +83,20 @@
 		CD1998A5219017A400AFAE8A /* VideoPlayer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoPlayer.storyboard; sourceTree = "<group>"; };
 		CD1998A92190212400AFAE8A /* TimeUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeUtil.swift; sourceTree = "<group>"; };
 		CD1998AB219021F900AFAE8A /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
-		CDA48D4621974A6600911766 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		CD352FC72198704D00597628 /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IJKMediaFramework.framework; path = ../../../IOSProject/framework/IJKMediaFramework.framework; sourceTree = "<group>"; };
+		CD352FC92198706A00597628 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		CD352FCB2198707A00597628 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		CD352FCD2198708600597628 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		CD352FCF2198708F00597628 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		CD352FD12198709700597628 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		CD352FD3219870A800597628 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		CD352FD5219870BA00597628 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
+		CD352FD7219870C500597628 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		CD352FD9219870D000597628 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		CD352FDB219870DA00597628 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		CD352FDD219870E500597628 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CD352FDF2198726500597628 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		CD352FE12198726C00597628 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		CDF5E668219037FB00FEB7BE /* VideoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoController.swift; sourceTree = "<group>"; };
 		CDF5E66A21903CF700FEB7BE /* ControllerUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerUtil.swift; sourceTree = "<group>"; };
 		FE9E2AD0273FC3337A4C5EFB /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +107,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD352FE02198726500597628 /* CoreMedia.framework in Frameworks */,
+				CD352FDE219870E500597628 /* CoreGraphics.framework in Frameworks */,
+				CD352FDC219870DA00597628 /* AVFoundation.framework in Frameworks */,
+				CD352FDA219870D000597628 /* AudioToolbox.framework in Frameworks */,
+				CD352FD8219870C500597628 /* libz.tbd in Frameworks */,
+				CD352FD6219870BA00597628 /* libbz2.tbd in Frameworks */,
+				CD352FD4219870A800597628 /* VideoToolbox.framework in Frameworks */,
+				CD352FD22198709700597628 /* QuartzCore.framework in Frameworks */,
+				CD352FD02198708F00597628 /* OpenGLES.framework in Frameworks */,
+				CD352FCE2198708600597628 /* MobileCoreServices.framework in Frameworks */,
+				CD352FCC2198707A00597628 /* MediaPlayer.framework in Frameworks */,
+				CD352FCA2198706A00597628 /* libstdc++.tbd in Frameworks */,
 				9705A1C61CF904A100538489 /* Flutter.framework in Frameworks */,
 				3B80C3941E831B6300D905FE /* App.framework in Frameworks */,
 				840729C41108ED86248A5DB5 /* Pods_Runner.framework in Frameworks */,
@@ -95,6 +131,20 @@
 		5B21F910CD518C7265AE7B7C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CD352FE12198726C00597628 /* CoreVideo.framework */,
+				CD352FDF2198726500597628 /* CoreMedia.framework */,
+				CD352FDD219870E500597628 /* CoreGraphics.framework */,
+				CD352FDB219870DA00597628 /* AVFoundation.framework */,
+				CD352FD9219870D000597628 /* AudioToolbox.framework */,
+				CD352FD7219870C500597628 /* libz.tbd */,
+				CD352FD5219870BA00597628 /* libbz2.tbd */,
+				CD352FD3219870A800597628 /* VideoToolbox.framework */,
+				CD352FD12198709700597628 /* QuartzCore.framework */,
+				CD352FCF2198708F00597628 /* OpenGLES.framework */,
+				CD352FCD2198708600597628 /* MobileCoreServices.framework */,
+				CD352FCB2198707A00597628 /* MediaPlayer.framework */,
+				CD352FC92198706A00597628 /* libstdc++.tbd */,
+				CD352FC72198704D00597628 /* IJKMediaFramework.framework */,
 				FE9E2AD0273FC3337A4C5EFB /* Pods_Runner.framework */,
 			);
 			name = Frameworks;
@@ -151,7 +201,6 @@
 				CD199897219010F900AFAE8A /* ChannelProvider.swift */,
 				CD1998A5219017A400AFAE8A /* VideoPlayer.storyboard */,
 				CD1998992190111B00AFAE8A /* VideoPlayerViewController.swift */,
-				CDA48D4621974A6600911766 /* PlayerViewController.swift */,
 				CD1998A92190212400AFAE8A /* TimeUtil.swift */,
 				CD1998AB219021F900AFAE8A /* StringExtension.swift */,
 				CDF5E668219037FB00FEB7BE /* VideoController.swift */,
@@ -384,7 +433,6 @@
 				CD1998AC219021F900AFAE8A /* StringExtension.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
 				CD1998AA2190212400AFAE8A /* TimeUtil.swift in Sources */,
-				CDA48D4721974A6600911766 /* PlayerViewController.swift in Sources */,
 				CDF5E66B21903CF700FEB7BE /* ControllerUtil.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -529,6 +577,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -561,6 +610,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Runner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

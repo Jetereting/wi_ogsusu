@@ -88,7 +88,6 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin{
       isLoadingMore = true;
     });
     String url = Constant.URL_NEWS;
-    print(pageNum); //TODO delete
     Response response = await dio.get(url, data: {
       "categoryId": "10",
       "pageNum": pageNum,

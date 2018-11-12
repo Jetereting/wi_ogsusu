@@ -9,9 +9,12 @@
 import Foundation
 import UIKit
 import TXLiteAVSDK_Player
+import SnapKit
 
 class VideoPlayerViewController: UIViewController{
     
+    
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var playView: UIView!
     @IBOutlet weak var controllerView: VideoController!
     
@@ -23,12 +26,19 @@ class VideoPlayerViewController: UIViewController{
     
     var channelId: String!
     var token: String!
+    var isFullScreen = false
+    
+    let screenw = UIScreen.main.bounds.size.width
+    let screenh = UIScreen.main.bounds.size.height
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        controllerView.attachController(self)
-        controllerView.videoControllerDelegate = self
+        player.vodDelegate = self
         player.setupVideoWidget(playView, insert: 0)
+        
+        controllerView.attachController(self)
+        controllerView.delegate = self
+
         channelProvider.loadDelegate = self
         print(channelId)
         if let id = channelId{
@@ -54,24 +64,31 @@ class VideoPlayerViewController: UIViewController{
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        print("viewDidDisappear")
         releasePlayer()
     }
     
     func releasePlayer(){
-        print("6565")
         player.pause()
         player.stopPlay()
         player.removeVideoWidget()
     }
     
+
+    var isStatusBarHidden = false {
+        didSet{
+            self.setNeedsStatusBarAppearanceUpdate()
+        }
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return self.isStatusBarHidden
+    }
 }
 
 
 extension VideoPlayerViewController: ChannelProviderDelegate{
     
     func loadSuccess(channelInfo: ChannelInfo) {
-        print(1)
         print(channelInfo)
         parseUrl(channelInfo)
     }
@@ -80,6 +97,29 @@ extension VideoPlayerViewController: ChannelProviderDelegate{
         print(message)
     }
     
+}
+
+
+extension VideoPlayerViewController: TXVodPlayListener{
+    func onPlayEvent(_ player: TXVodPlayer!, event EvtID: Int32, withParam param: [AnyHashable : Any]!) {
+        if(EvtID == PLAY_EVT_PLAY_BEGIN.rawValue){
+            controllerView.btnPlay.setImage(UIImage(named: "pause_30"), for: UIControlState.normal)
+        }
+        
+        if (EvtID == PLAY_EVT_PLAY_PROGRESS.rawValue) {
+            // 加载进度, 单位是秒, 小数部分为毫秒
+            var playable = param[EVT_PLAYABLE_DURATION]
+//            [_loadProgressBar setValue:playable];
+            // 播放进度, 单位是秒, 小数部分为毫秒
+            var progress = param[EVT_PLAY_PROGRESS];
+//            [_seekProgressBar setValue:progress];
+            var totalDuration = param[EVT_PLAY_DURATION];
+        }
+    }
+    
+    func onNetStatus(_ player: TXVodPlayer!, withParam param: [AnyHashable : Any]!) {
+        
+    }
     
 }
 
@@ -90,4 +130,47 @@ extension VideoPlayerViewController: VideoControllerDelegate{
         releasePlayer()
         self.dismiss(animated: false, completion: nil)
     }
+    
+    func playOrPause(btnPlay: UIButton) {
+        if(player.isPlaying()){
+            player.pause()
+            btnPlay.setImage(UIImage(named: "play_30"), for: UIControlState.normal)
+        }else{
+            player.resume()
+            btnPlay.setImage(UIImage(named: "pause_30"), for: UIControlState.normal)
+        }
+    }
+    
+    func fullScreen(isFullScreen: Bool) {
+        self.isFullScreen = isFullScreen
+        if isFullScreen {
+            toLandspaceRight()
+        }else{
+            toPortrait()
+        }
+    }
+    
+    func toLandspaceRight(){
+        UIView.animate(withDuration: 0.2) {
+            self.view.transform = CGAffineTransform.identity
+                .rotated(by:CGFloat(Double.pi/2))
+//                    .translatedBy(x: (screenh - self.contentView.bounds.height) / 2, y: 0)
+//                    .scaledBy(x: screenh / self.contentView.bounds.width, y: screenw / self.contentView.bounds.height)
+            self.view.bounds = CGRect(x:0,y:0,width:self.screenh,height: self.screenw);
+            self.viewWillLayoutSubviews();
+            self.view.layoutIfNeeded();
+            self.isStatusBarHidden = true
+        }
+    }
+    
+    func toPortrait(){
+        UIView.animate(withDuration: 0.2) {
+            self.view.transform = CGAffineTransform.identity
+            self.view.bounds = CGRect(x:0,y:0,width: self.screenw, height: self.screenh);
+            self.viewWillLayoutSubviews();
+            self.view.layoutIfNeeded();
+            self.isStatusBarHidden = false
+        }
+    }
+    
 }

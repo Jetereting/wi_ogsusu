@@ -239,12 +239,12 @@ class _MediaEpgDetailPageState extends State<MediaEpgDetailPage>{
         new RefreshIndicator(
           child: new ListView.builder(
             padding: EdgeInsets.all(3.0),
-            itemCount: _epgDetailList.length,
+            itemCount: _epgDetailList.length * 2,
             itemBuilder: (BuildContext context, int index) {
               if(index.isOdd){
                 return const Divider();
               }
-              return buildEpgDetailListItem(_epgDetailList[index], deviceSize);
+              return buildEpgDetailListItem(_epgDetailList[index ~/ 2], deviceSize);
             },
             ),
           onRefresh: _getEpgDetailData,
