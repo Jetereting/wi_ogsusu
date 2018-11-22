@@ -9,6 +9,7 @@ import 'package:wi_ogsusu/entities/event_info.dart';
 import 'package:wi_ogsusu/page/page_web_view.dart';
 import 'package:wi_ogsusu/constant.dart';
 import 'package:wi_ogsusu/common/utils/time_util.dart';
+import 'package:dio/dio.dart';
 
 class MyPage extends StatefulWidget{
   @override
@@ -18,9 +19,13 @@ class MyPage extends StatefulWidget{
 
 class MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin{
 
+  Dio dio = new Dio();
+  bool _eventLoading = true;
   String _username = 'no login';
   String _repCode = '';
   String _validTime = '';
+  List<EventInfo> _eventList = [];
+
   List<ToolInfo> _toolList = [
     ToolInfo('check_in', 'res/img/icons8_calendar_plus_96.png', 1),
     ToolInfo('vip', 'res/img/icons8_vip_96.png', 2),
@@ -28,31 +33,11 @@ class MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin{
     ToolInfo('credit_card', 'res/img/icons8_card_security_96.png', 4),
   ];
 
-  List<EventInfo> _eventList = [
-    EventInfo()
-      ..type = 1
-      ..label = ''
-      ..icon = 'https://s1.ax1x.com/2018/11/22/FPuBnJ.jpg'
-      ..link = 'http://www.golde.club'
-      ..labelVisible = true,
-    EventInfo()
-      ..type = 1
-      ..label = ''
-      ..icon = 'https://s1.ax1x.com/2018/11/22/FPur7R.jpg'
-      ..link = 'http://www.golde.club'
-      ..labelVisible = true,
-    EventInfo()
-      ..type = 1
-      ..label = ''
-      ..icon = 'https://s1.ax1x.com/2018/11/22/FPuwX4.jpg'
-      ..link = 'http://www.golde.club'
-      ..labelVisible = true,
-  ];
-
   @override
   void initState() {
     super.initState();
     getLocalUserInfo();
+    _getPopularEventData();
   }
 
   @override
@@ -62,6 +47,43 @@ class MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin{
 
   @override
   bool get wantKeepAlive => true;
+
+
+  Future<void> _getPopularEventData() async{
+    setState(() {
+      _eventLoading = true;
+    });
+    String url = Constant.URL_POPULAR_EVENTS ;
+    Response response = await dio.get(url, 
+      data:{
+        "type": Constant.PARAM_TYPE,
+        "agent": Constant.PARAM_AGENT, 
+        "platform": Constant.PARAM_PLATFORM,
+        "categoryId": '2'
+        }
+      ).catchError((DioError e){
+          print("DioError: " + e.toString());
+        });
+    int code = response.data['code'];
+    if(code == 200) {
+      List list = response.data['data'];
+      if(mounted) {
+        setState(() {
+          _eventLoading = false;
+          _eventList = list.map((dataStr) {
+            return EventInfo.fromJson(dataStr);
+          }).toList();
+        });
+      }
+    }else{
+      print(response.data['msg']);
+      if(mounted) {
+        setState(() {
+          _eventLoading = false;
+        });
+      }
+    }
+  }
 
 
   getLocalUserInfo() async{
@@ -91,11 +113,13 @@ class MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin{
   }
 
   Widget buildToolItem(ToolInfo toolInfo){
+    double width = MediaQuery.of(context).size.width / _toolList.length;
     return GestureDetector(
       onTap: (){
         clickToolGridItem(toolInfo);
       },
       child: Container(
+        width: width,
         padding: EdgeInsets.only(left: 12.0, right: 12.0, bottom: 0.0, top: 0.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -226,7 +250,7 @@ class MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin{
 
     Widget sectionTool = new Container(
       color: Colors.white,
-      padding: EdgeInsets.only(top: 13.0, bottom: 8.0, left: 8.0, right: 8.0),
+      padding: EdgeInsets.only(top: 13.0, bottom: 8.0),
       child: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -268,13 +292,6 @@ class MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin{
             )
           ],
         ),
-//        child: new ListView.builder(
-//          itemCount: _eventList.length,
-//          scrollDirection: Axis.horizontal,
-//          itemBuilder: (BuildContext context, int index) {
-//            return buildEventGridItem(_eventList[index]);
-//          },
-//        ),
     );
 
     Widget btnLogout = new Container(

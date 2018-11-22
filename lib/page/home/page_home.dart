@@ -14,6 +14,7 @@ import 'package:dio/dio.dart';
 import 'package:wi_ogsusu/widget/page_loading_list9.dart';
 import 'page_news_detail.dart';
 import 'package:wi_ogsusu/common/utils/device_util.dart';
+import 'package:wi_ogsusu/entities/event_info.dart';
 
 
 class HomePage extends StatefulWidget{
@@ -34,6 +35,8 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin{
 
   Dio dio = new Dio();
   bool _newsLoading = true;
+  bool _eventLoading = true;
+  List<EventInfo> _eventList = [];
   List<NewsInfo> _newsInfoList = [];
   int _currentHeadlineIndex = 0;
   int pageNum = 1;
@@ -56,11 +59,6 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin{
     NewsInfo(0, '', '', '', '', '', '', 'http://', ''),
   ];
 
-  List<String> headlines = [
-    'Prefer Customer Program Office, Join now and we will waive the 1st years \$29.99 annual membership fee',
-    'Prefer Customer Program Office, Join now and we will waive the 1st years \$29.99 annual membership fee'
-  ];
-
   @override
   bool get wantKeepAlive => true;
 
@@ -76,6 +74,7 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin{
     pageNum = 1;
     _newsInfoList = [];
     _getNewsData();
+    _getPopularEventData();
   }
 
   Future<void> _pullUpLoadMoreNewsData() async {
@@ -134,6 +133,43 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin{
       }
     }
   }
+
+  Future<void> _getPopularEventData() async{
+    setState(() {
+      _eventLoading = true;
+    });
+    String url = Constant.URL_POPULAR_EVENTS ;
+    Response response = await dio.get(url,
+        data:{
+          "type": Constant.PARAM_TYPE,
+          "agent": Constant.PARAM_AGENT,
+          "platform": Constant.PARAM_PLATFORM,
+          "categoryId": '1'
+        }
+    ).catchError((DioError e){
+      print("DioError: " + e.toString());
+    });
+    int code = response.data['code'];
+    if(code == 200) {
+      List list = response.data['data'];
+      if(mounted) {
+        setState(() {
+          _eventLoading = false;
+          _eventList = list.map((dataStr) {
+            return EventInfo.fromJson(dataStr);
+          }).toList();
+        });
+      }
+    }else{
+      print(response.data['msg']);
+      if(mounted) {
+        setState(() {
+          _eventLoading = false;
+        });
+      }
+    }
+  }
+
 
   void showNewsDetail(NewsInfo newsInfo){
     Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
@@ -203,9 +239,12 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin{
   }
 
   void _clickHeadline(){
-    print(headlines[_currentHeadlineIndex]);
+    if(_eventList.length <= 0){
+      return;
+    }
+    EventInfo eventInfo = _eventList[_currentHeadlineIndex];
     Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
-      return new WebViewPage("http://www.golde.club");
+      return new WebViewPage(eventInfo.link);
     }));
   }
 
@@ -232,11 +271,11 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin{
                 SizedBox(width: 6.0,),
                 Expanded(
                   child: new CarouselSlider(
-                    items: headlines.map((headline) {
+                    items: _eventList.map((event) {
                       return new Builder(
                         builder: (BuildContext context) {
                           return Text(
-                            headline,
+                            event.label,
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           );
@@ -410,6 +449,7 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin{
         _pullUpLoadMoreNewsData();
       }
     });
+    _getPopularEventData();
   }
 
   @override
