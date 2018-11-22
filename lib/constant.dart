@@ -44,7 +44,7 @@ class Constant{
 
   static const PARAM_TYPE = 1;
   static const PARAM_AGENT = 101;
-  static const PARAM_PLATFORM = 8;
+  static const PARAM_PLATFORM = 11;
 
 
   static const MOVIES = "MOVIES";

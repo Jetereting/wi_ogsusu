@@ -22,7 +22,7 @@ class MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin{
   String _repCode = '';
   String _validTime = '';
   List<ToolInfo> _toolList = [
-    ToolInfo('qiandao', 'res/img/icons8_calendar_plus_96.png', 1),
+    ToolInfo('check_in', 'res/img/icons8_calendar_plus_96.png', 1),
     ToolInfo('vip', 'res/img/icons8_vip_96.png', 2),
     ToolInfo('coins', 'res/img/icons8_cheap_96.png', 3),
     ToolInfo('credit_card', 'res/img/icons8_card_security_96.png', 4),
