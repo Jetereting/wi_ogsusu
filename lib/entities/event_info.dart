@@ -20,13 +20,13 @@ class EventInfo extends Object{
   @JsonKey()
   String description;
   @JsonKey()
+  int action;
+  @JsonKey()
   int type;
   @JsonKey()
   int agent;
   @JsonKey()
   int platform;
-  @JsonKey()
-  int action;
   @JsonKey()
   int flag;
   @JsonKey()

@@ -15,10 +15,13 @@ EventInfo _$EventInfoFromJson(Map<String, dynamic> json) {
     ..icon = json['icon'] as String
     ..link = json['link'] as String
     ..description = json['description'] as String
+    ..action = json['action'] as int
     ..type = json['type'] as int
     ..agent = json['agent'] as int
     ..platform = json['platform'] as int
-    ..flag = json['flag'] as int;
+    ..flag = json['flag'] as int
+    ..visible = json['visible'] as bool
+    ..labelVisible = json['labelVisible'] as bool;
 }
 
 Map<String, dynamic> _$EventInfoToJson(EventInfo instance) => <String, dynamic>{
@@ -29,8 +32,11 @@ Map<String, dynamic> _$EventInfoToJson(EventInfo instance) => <String, dynamic>{
       'icon': instance.icon,
       'link': instance.link,
       'description': instance.description,
+      'action': instance.action,
       'type': instance.type,
       'agent': instance.agent,
       'platform': instance.platform,
-      'flag': instance.flag
+      'flag': instance.flag,
+      'visible': instance.visible,
+      'labelVisible': instance.labelVisible
     };
