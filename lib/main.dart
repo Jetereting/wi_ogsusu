@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'navigator.dart';
 import 'common/utils/sp_util.dart';
-import 'package:wi_ogsusu/page/page_bottom_tab.dart';
 import 'page/page_login.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:wi_ogsusu/locale/translations.dart';
-import 'generated/i18n.dart';
 import 'page/page_splash.dart';
 import 'package:flutter/rendering.dart';
 
@@ -41,7 +39,6 @@ class MyAppState extends State<MyApp>{
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-//      navigatorObservers: [new VillainTransitionObserver()],
       localizationsDelegates: [
         const TranslationsDelegate(),
         GlobalMaterialLocalizations.delegate,

@@ -9,6 +9,7 @@ import 'package:wi_ogsusu/entities/product_sku_info.dart';
 import 'package:wi_ogsusu/constant.dart';
 import 'package:wi_ogsusu/page/mall/page_mall_product_detail.dart';
 import 'package:wi_ogsusu/widget/page_loading_list8.dart';
+import 'package:wi_ogsusu/page/page_web_view.dart';
 
 class MallPage extends StatefulWidget{
   @override
@@ -102,7 +103,7 @@ class MallPageState extends State<MallPage> with AutomaticKeepAliveClientMixin{
     return GestureDetector(
       onTap: (){
         Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
-          return new ProductDetailPage(productInfo);
+          return new WebViewPage(Constant.URL_MALL_PRODUCT + productInfo.id.toString());
         }));
       },
       child: Card(
@@ -128,7 +129,7 @@ class MallPageState extends State<MallPage> with AutomaticKeepAliveClientMixin{
               Row(
                 children: <Widget>[
                   Text(
-                    productInfo.currency + productInfo.price.toString(),
+                    "\$" + productInfo.price.toString(),
                     style: TextStyle(
                         color: Colors.red,
                         fontSize: 16.0,
@@ -155,18 +156,19 @@ class MallPageState extends State<MallPage> with AutomaticKeepAliveClientMixin{
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
+        backgroundColor: Color(0xFF0A0126),
         automaticallyImplyLeading: false,
         title: new Text(
           Translations.of(context).text('mall'),
         ),
         actions: <Widget>[
-          new IconButton(
-            tooltip: 'ShoppingCart',
-            icon: const Icon(Icons.shopping_cart),
-            onPressed: () async {
-
-            },
-          ),
+//          new IconButton(
+//            tooltip: 'ShoppingCart',
+//            icon: const Icon(Icons.shopping_cart),
+//            onPressed: () async {
+//
+//            },
+//          ),
         ],
       ),
       body: new Container(

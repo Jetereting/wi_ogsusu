@@ -109,7 +109,7 @@ class _SportsGamesDetailPageState extends State<SportsGamesDetailPage> with Auto
         child: new Row(
           children: <Widget>[
             Container(
-              width: deviceSize.width / 3,
+              width: deviceSize.width / 5,
               child: new AspectRatio(
                 aspectRatio: 16.0 / 9.0,
                 child: new Container(
@@ -127,7 +127,7 @@ class _SportsGamesDetailPageState extends State<SportsGamesDetailPage> with Auto
                 sportGameChannelInfo.label,
                 maxLines: 2,
                 style: TextStyle(
-                  fontSize: 28.0,
+                  fontSize: 15.0,
                 ),
               ),
             ),
@@ -150,7 +150,7 @@ class _SportsGamesDetailPageState extends State<SportsGamesDetailPage> with Auto
       appBar: AppBar(
         backgroundColor: Color(0xFF0A0126),
         title: Text(
-          Translations.of(context).text('play_list')
+          Translations.of(context).text('more')
         ),
       ),
       body: new Container(

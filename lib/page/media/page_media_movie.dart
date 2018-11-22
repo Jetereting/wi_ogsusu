@@ -31,22 +31,22 @@ class _MediaMoviePageState extends State<MediaMoviePage>  with AutomaticKeepAliv
   void showErrorNotice(String msg){
     showModalBottomSheet<void>(context: context, builder: (BuildContext context) {
       return new Container(
-          child: new Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: new Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                new Icon(Icons.highlight_off, color: Colors.red,),
-                new Text(' ' + msg,
-                    textAlign: TextAlign.left,
-                    style: new TextStyle(
-                        color: Colors.red,
-                        fontSize: 16.0
-                    )
-                ),
-              ],
-            ),
-          )
+        child: new Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: new Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              new Icon(Icons.highlight_off, color: Colors.red,),
+              new Text(' ' + msg,
+                textAlign: TextAlign.left,
+                style: new TextStyle(
+                  color: Colors.red,
+                  fontSize: 16.0
+                )
+              ),
+            ],
+          ),
+        )
       );
     });
   }
@@ -55,7 +55,7 @@ class _MediaMoviePageState extends State<MediaMoviePage>  with AutomaticKeepAliv
     setState(() {
       _loading = true;
     });
-    String url = Constant.URL_MOVIES + '?pageNum=$nextPage&pageSize=200';
+    String url = Constant.URL_MOVIES + '?pageNum=$nextPage&pageSize=60';
     Response response = await dio.get(url).catchError((DioError e){
       print("DioError: " + e.toString());
     });

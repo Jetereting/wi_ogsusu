@@ -41,6 +41,9 @@ class MediaMovieDetailPageState extends State<MediaMovieDetailPage>{
     Response response = await dio.get(url).catchError((DioError e){
       print("DioError: " + e.toString());
     });
+    if(response == null){
+      return;
+    }
     int code = response.data['code'];
     if(code == 200) {
       var data = response.data['data'];
@@ -151,41 +154,12 @@ class MediaMovieDetailPageState extends State<MediaMovieDetailPage>{
 
   @override
   Widget build(BuildContext context) {
-    var childButtons = List<UnicornButton>();
-    childButtons.add(UnicornButton(
-        hasLabel: true,
-        labelText: "Upvote",
-        currentButton: FloatingActionButton(
-          foregroundColor: Colors.white,
-          backgroundColor: Colors.greenAccent,
-          mini: true,
-          child: Icon(Icons.thumb_up),
-          onPressed: () {},
-        )));
-
-    childButtons.add(UnicornButton(
-        hasLabel: true,
-        labelText: "Downvote",
-        currentButton: FloatingActionButton(
-          foregroundColor: Colors.white,
-          backgroundColor: Colors.redAccent,
-          mini: true,
-          child: Icon(Icons.thumb_down),
-          onPressed: () {},
-        )));
     return new Scaffold(
       appBar: new AppBar(
         backgroundColor: Colors.redAccent[400],
         title: new Text(
           _movieInfo.title,
         ),
-      ),
-      floatingActionButton: UnicornDialer(
-        backgroundColor: Color.fromRGBO(255, 255, 255, 0.3),
-        parentButtonBackground: Colors.redAccent[400],
-        orientation: UnicornOrientation.VERTICAL,
-        parentButton: Icon(Icons.add, color: Colors.white,),
-        childButtons: childButtons
       ),
       body: new Container(
           alignment: Alignment.center,

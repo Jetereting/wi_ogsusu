@@ -28,17 +28,5 @@ class RouteNavigator{
           return PageLogin();
         })
     );
-//    router.define(
-//        "/login",
-//        handler: Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-//          return LoginPage();
-//        })
-//    );
-//    router.define(
-//        "/nav",
-//        handler: Handler(handlerFunc: (BuildContext context, Map<String, dynamic> params) {
-//          return NavPage();
-//        })
-//    );
   }
 }

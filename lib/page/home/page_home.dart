@@ -9,9 +9,11 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:wi_ogsusu/entities/news_info.dart';
 import 'package:wi_ogsusu/constant.dart';
 import 'package:wi_ogsusu/page/search/page_search.dart';
+import 'package:wi_ogsusu/page/page_web_view.dart';
 import 'package:dio/dio.dart';
 import 'package:wi_ogsusu/widget/page_loading_list9.dart';
 import 'page_news_detail.dart';
+import 'package:wi_ogsusu/common/utils/device_util.dart';
 
 
 class HomePage extends StatefulWidget{
@@ -87,10 +89,12 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin{
       _newsLoading = true;
       isLoadingMore = true;
     });
+    String language = await getSpString(Constant.SP_KEY_LANGUAGE);
     String url = Constant.URL_NEWS;
     Response response = await dio.get(url, data: {
       "categoryId": "10",
       "pageNum": pageNum,
+      "language": language,
     }).catchError((DioError e){
       print("DioError: " + e.toString());
     });
@@ -129,6 +133,12 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin{
         });
       }
     }
+  }
+
+  void showNewsDetail(NewsInfo newsInfo){
+    Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
+      return new NewsDetailPage(newsInfo);
+    }));
   }
 
   Widget buildBanner(){
@@ -194,7 +204,9 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin{
 
   void _clickHeadline(){
     print(headlines[_currentHeadlineIndex]);
-    _showLink("http://www.golde.club");
+    Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
+      return new WebViewPage("http://www.golde.club");
+    }));
   }
 
   void _headlineCallback(index){
@@ -261,12 +273,6 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin{
           ),
         )
     );
-  }
-
-  void showNewsDetail(NewsInfo newsInfo){
-    Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
-      return new NewsDetailPage(newsInfo);
-    }));
   }
 
   Widget buildNewsListItem(NewsInfo newsInfo){

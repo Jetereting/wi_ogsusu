@@ -33,7 +33,7 @@ class SportEventInfo extends Object{
 
   @override
   String toString() {
-    return 'SportEventInfo{type: $type}';
+    return 'SportEventInfo{id: $id, categoryId: $categoryId, label: $label, name: $name, icon: $icon, description: $description, type: $type, agent: $agent, platform: $platform, flag: $flag}';
   }
 
 

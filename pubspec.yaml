@@ -26,10 +26,9 @@ dependencies:
   simple_permissions: ^0.1.9
   sqflite: ^0.12.2+1
   crypto: ^2.0.6
-  flutter_inappbrowser: ^0.5.51
   unicorndial: ^1.1.5
-#  flutter_villains: ^1.1.6
   chewie: ^0.8.0
+  flutter_webview_plugin: ^0.3.0+2
 
 dev_dependencies:
   flutter_test:
@@ -81,6 +80,11 @@ flutter:
     - res/img/bg_my_header2.jpg
     - res/img/bg_my_header3.jpg
     - res/img/bg_my_header4.jpg
+    - res/img/icons8_card_security_96.png
+    - res/img/icons8_cheap_96.png
+    - res/img/icons8_vip_96.png
+    - res/img/icons8_calendar_plus_96.png
+    - res/img/event_1.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

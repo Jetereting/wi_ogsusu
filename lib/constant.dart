@@ -24,8 +24,9 @@ class Constant{
 
   static const URL_CHANNEL = "http://channel.vipnow.work:10220/channel/d/";
 
-  static const URL_MALL = "http://mall.vipnow.work/";
-  static const URL_MALL_PRODUCTS = URL_MALL + "products";
+  static const URL_MALL = "http://www.golde.club/";
+  static const URL_MALL_PRODUCTS = URL_MALL + "v1/products";
+  static const URL_MALL_PRODUCT = URL_MALL + "product/";
   static const URL_MALL_PRODUCT_SKUS = URL_MALL + "product/sku/";
 
 
@@ -34,13 +35,16 @@ class Constant{
 
   static const SP_KEY_USER_ID = "userId";
   static const SP_KEY_USERNAME = "username";
+  static const SP_KEY_REP_CODE = "repCode";
+  static const SP_KEY_VALID_TIME = "validTime";
   static const SP_KEY_TOKEN = "token";
   static const SP_KEY_STREAM_TOKEN = "streamToken";
+  static const SP_KEY_LANGUAGE = "language";
 
 
   static const PARAM_TYPE = 1;
-  static const PARAM_AGENT = 0;
-  static const PARAM_PLATFORM = 11;
+  static const PARAM_AGENT = 101;
+  static const PARAM_PLATFORM = 8;
 
 
   static const MOVIES = "MOVIES";

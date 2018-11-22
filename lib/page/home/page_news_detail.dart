@@ -5,6 +5,7 @@ import 'package:wi_ogsusu/common/utils/modal_util.dart';
 import 'package:wi_ogsusu/entities/news_info.dart';
 import 'package:wi_ogsusu/entities/news_detail_info.dart';
 import 'package:wi_ogsusu/widget/page_loading_list7.dart';
+import 'package:wi_ogsusu/page/page_web_view.dart';
 
 // ignore: must_be_immutable
 class NewsDetailPage extends StatefulWidget{
@@ -84,12 +85,6 @@ class NewsDetailPageState extends State<NewsDetailPage> with AutomaticKeepAliveC
   Widget build(BuildContext context) {
     var deviceSize = MediaQuery.of(context).size;
     double _appBarHeight = deviceSize.width /16 * 9;
-//    return Scaffold(
-//      appBar: AppBar(
-//
-//      ),
-//      body:
-//    );
     return new Scaffold(
       backgroundColor: Color(0xFFEEEEEE),
       floatingActionButton: FloatingActionButton(
@@ -116,6 +111,16 @@ class NewsDetailPageState extends State<NewsDetailPage> with AutomaticKeepAliveC
                 fontSize: 16.0,
               ),
             ),
+            actions: <Widget>[
+              new IconButton(
+                icon: const Icon(Icons.insert_drive_file),
+                onPressed: (){
+                  Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
+                    return new WebViewPage(_newsInfo.detailLink);
+                  }));
+                },
+              ),
+            ],
             flexibleSpace: new FlexibleSpaceBar(
               centerTitle: true,
               background: new Stack(

@@ -7,45 +7,34 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 class TimeUtil{
 
+  ///获取当前时间unix毫秒数
   static int currentTimeMillis() {
     return new DateTime.now().millisecondsSinceEpoch;
   }
 
+  ///获取当前时间的unix秒数
   static int currentTimeSeconds() {
     String millis = new DateTime.now().millisecondsSinceEpoch.toString();
     return int.parse(millis.substring(0, millis.length - 3));
   }
 
-  /** 复制到剪粘板 */
-  static copyToClipboard(final String text) {
-//    if (text == null) return;
-//    Clipboard.setData(new ClipboardData(text: text));
+  ///解析java返回的文本时间 eg. 2019-11-06T15:29:33.000+0000
+  static DateTime parseJavaTime(String time) {
+    var format = new DateFormat('yyyy-MM-ddTHH:mm:ss', 'en_US');
+    DateTime dateTime = format.parse(time.substring(0, 19));
+    return dateTime;
   }
 
-  static const RollupSize_Units = ["GB", "MB", "KB", "B"];
-  /** 返回文件大小字符串 */
-  static String getRollupSize(int size) {
-    int idx = 3;
-    int r1 = 0;
-    String result = "";
-    while (idx >= 0) {
-      int s1 = size % 1024;
-      size = size >> 10;
-      if (size == 0 || idx == 0) {
-        r1 = (r1 * 100) ~/ 1024;
-        if (r1 > 0) {
-          if (r1 >= 10)
-            result = "$s1.$r1${RollupSize_Units[idx]}";
-          else
-            result = "$s1.0$r1${RollupSize_Units[idx]}";
-        } else
-          result = s1.toString() + RollupSize_Units[idx];
-        break;
-      }
-      r1 = s1;
-      idx--;
-    }
-    return result;
+  ///日期转换为带日期时间的文本
+  static String toDateTimeString(DateTime dateTime) {
+    var format = new DateFormat('yyyy-MM-dd HH:mm:ss', 'en_US');
+    return format.format(dateTime);
+  }
+
+  ///日期转换为显示时间文本
+  static String toTimeString(DateTime dateTime) {
+    var format = new DateFormat('HH:mm:ss', 'en_US');
+    return format.format(dateTime);
   }
 
   /** 返回两个日期相差的天数 */
@@ -62,31 +51,17 @@ class TimeUtil{
     }
   }
 
-  /** 获取屏幕宽度 */
-  static double getScreenWidth(BuildContext context) {
-    return MediaQuery.of(context).size.width;
-  }
-
-  /** 获取屏幕高度 */
-  static double getScreenHeight(BuildContext context) {
-    return MediaQuery.of(context).size.height;
-  }
-
-  /** 获取系统状态栏高度 */
-  static double getSysStatsHeight(BuildContext context) {
-    return MediaQuery.of(context).padding.top;
-  }
-
-
-
+  ///unix时间转时间文本,默认使用en_US locale
   static String toStrTime(int timestamp) {
     return toStrTimeWithLocaleStr(timestamp, 'en_US');
   }
 
+  ///unix时间转时间文本并指定locale
   static String toStrTimeWithLocale(int timestamp, Locale locale) {
     return toStrTimeWithLocaleStr(timestamp, locale.languageCode + "_" + locale.countryCode);
   }
 
+  ///unix时间转时间文本并用文本形式指定locale
   static String toStrTimeWithLocaleStr(int timestamp, String str) {
     var now = new DateTime.now();
     var format = new DateFormat('HH:mm a', str);
@@ -122,6 +97,8 @@ class TimeUtil{
     return toStrDateTimeWithLocaleStr(timestamp, locale.languageCode + "_" + locale.countryCode);
   }
 
+
+  ///unix时间转带日期的时间文本并用文本形式指定locale
   static String toStrDateTimeWithLocaleStr(int timestamp, String localStr) {
     var now = new DateTime.now();
     var format = new DateFormat('yyyy-MM-dd HH:mm a', 'en_US');

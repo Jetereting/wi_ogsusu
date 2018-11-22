@@ -5,8 +5,8 @@ import 'package:wi_ogsusu/common/utils/modal_util.dart';
 import 'package:wi_ogsusu/locale/translations.dart';
 import 'package:dio/dio.dart';
 import 'package:wi_ogsusu/constant.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:wi_ogsusu/widget/background_login.dart';
+import 'package:wi_ogsusu/page/page_web_view.dart';
 
 class PageLogin extends StatefulWidget{
 
@@ -21,12 +21,9 @@ class PageLoginState extends State<PageLogin>{
   bool _loading = false;
 
   _signUp() async {
-    const url = 'http://www.golde.club';
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not open page, network connect error';
-    }
+    Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
+      return new WebViewPage("http://www.golde.club");
+    }));
   }
 
   Future<Null> login(BuildContext context) async{
@@ -52,10 +49,11 @@ class PageLoginState extends State<PageLogin>{
       int code = response.data['code'];
       if (code == 200) {
         int userId = response.data['data']['id'];
-        String token = response.data['data']['token'];
+        String repCode = response.data['data']['code'];
         setState(() {
           setSpInt(Constant.SP_KEY_USER_ID, userId);
           setSpString(Constant.SP_KEY_USERNAME, username);
+          setSpString(Constant.SP_KEY_REP_CODE, repCode);
           loginOgsusu(context, userId);
         });
       } else {
@@ -82,8 +80,10 @@ class PageLoginState extends State<PageLogin>{
       int code = response.data['code'];
       if (code == 200) {
         String token = response.data['data']['token'];
+        String validTime = response.data['data']['validTime'];
+        setSpString(Constant.SP_KEY_TOKEN, token);
+        setSpString(Constant.SP_KEY_VALID_TIME, validTime);
         setState(() {
-          setSpString(Constant.SP_KEY_TOKEN, token);
           Navigator.of(context).pushNamed('/tab');
         });
       } else {
@@ -256,7 +256,8 @@ class PageLoginState extends State<PageLogin>{
                         tfUsername,
                         tfPassword,
                         _loading ? loading : btLogin,
-                        SizedBox(height: 20.0,)
+                        SizedBox(height: 20.0,),
+                        btSignUp,
                       ],
                     ),
                   ),
