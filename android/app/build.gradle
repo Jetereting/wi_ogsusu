@@ -33,11 +33,11 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.wiatec.wiogsusu"
+        applicationId "com.wiatec.ogsusu"
         minSdkVersion 21
         targetSdkVersion 27
-        versionCode 103
-        versionName "v1.0.3"
+        versionCode 104
+        versionName "v1.0.4"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         ndk {
             abiFilters "armeabi-v7a"
