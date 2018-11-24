@@ -30,7 +30,9 @@ class S implements WidgetsLocalizations {
   String get basketball => "Basketball";
   String get boxing => "Boxing";
   String get check_in => "Check In";
+  String get checked => "Checked";
   String get coins => "Coins";
+  String get continuous_check_in_days => "ContinuousCheckInDays: ";
   String get credit_card => "Credit Card";
   String get fight => "fight";
   String get football => "Football";
@@ -40,11 +42,14 @@ class S implements WidgetsLocalizations {
   String get logout => "Logout";
   String get mall => "Mall";
   String get media => "Media";
+  String get monthly_check_in_days => "MonthlyCheckInDays: ";
   String get more => "More";
   String get my => "My";
   String get password => "password";
   String get play_list => "Play List";
-  String get popular_events => "Popular events:";
+  String get points => "POINTS: ";
+  String get popular_events => "Popular events: ";
+  String get presents_for_attendance => "PRESENTS FOR ATTENDANCE";
   String get signup => "SignUp";
   String get sports => "Sports";
   String get sports_guide => "Sports Guide";
@@ -67,11 +72,15 @@ class zh extends S {
   @override
   String get popular_events => "热门活动:";
   @override
+  String get continuous_check_in_days => "连续签到: ";
+  @override
   String get media => "影视";
   @override
   String get login => "登录";
   @override
   String get ValidTime => "有效期: ";
+  @override
+  String get points => "积分： ";
   @override
   String get password => "密码";
   @override
@@ -80,6 +89,10 @@ class zh extends S {
   String get basketball => "篮球";
   @override
   String get golf => "高尔夫";
+  @override
+  String get monthly_check_in_days => "本月签到: ";
+  @override
+  String get checked => "已签到";
   @override
   String get play_list => "播放列表";
   @override
@@ -122,6 +135,8 @@ class zh extends S {
   String get LIVETV => "电视";
   @override
   String get boxing => "拳击";
+  @override
+  String get presents_for_attendance => "签到有礼";
   @override
   String get baseball => "棒球";
   @override

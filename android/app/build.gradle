@@ -73,6 +73,6 @@ dependencies {
     api 'com.android.support:appcompat-v7:27.1.1'
     def lifecycle_version = "1.1.1"
     api "android.arch.lifecycle:extensions:$lifecycle_version"
-    api 'com.px.library:module_common:1.1.0'
+    api 'com.px.library:module_common:1.1.1'
 //    api 'com.shuyu:GSYVideoPlayer:6.0.1'
 }

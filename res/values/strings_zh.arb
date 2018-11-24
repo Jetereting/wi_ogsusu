@@ -30,5 +30,10 @@
   "ValidTime": "有效期: ",
   "RepCode": "邀请码: ",
   "popular_events": "热门活动:",
+  "points": "积分： ",
+  "checked": "已签到",
+  "presents_for_attendance": "签到有礼",
+  "monthly_check_in_days": "本月签到: ",
+  "continuous_check_in_days": "连续签到: ",
   "play_list": "播放列表"
 }

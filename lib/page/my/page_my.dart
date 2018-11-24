@@ -7,9 +7,11 @@ import 'package:wi_ogsusu/common/utils/color_util.dart';
 import 'package:wi_ogsusu/entities/tool_info.dart';
 import 'package:wi_ogsusu/entities/event_info.dart';
 import 'package:wi_ogsusu/page/page_web_view.dart';
+import 'package:wi_ogsusu/page/my/check_in/page_check_in.dart';
 import 'package:wi_ogsusu/constant.dart';
 import 'package:wi_ogsusu/common/utils/time_util.dart';
 import 'package:dio/dio.dart';
+import 'package:wi_ogsusu/widget/my_event_item.dart';
 
 class MyPage extends StatefulWidget{
   @override
@@ -110,6 +112,11 @@ class MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin{
 
   void clickToolGridItem(ToolInfo toolInfo){
     print(toolInfo);
+    if(toolInfo.action == 1){
+      Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
+        return new CheckInPage();
+      }));
+    }
   }
 
   Widget buildToolItem(ToolInfo toolInfo){
@@ -144,41 +151,6 @@ class MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin{
     }));
   }
 
-  Widget buildEventItem(EventInfo eventInfo){
-    return GestureDetector(
-      onTap: (){
-        clickEventItem(eventInfo);
-      },
-      child: Container(
-        child: Card(
-          elevation: 2.0,
-          child: Stack(
-            children: <Widget>[
-              AspectRatio(
-                aspectRatio: 2.2/1,
-                child: FadeInImage.assetNetwork(
-                  placeholder: 'res/img/hold.jpg',
-                  image: eventInfo.icon,
-                  fit: BoxFit.fill,
-                ),
-              ),
-              Container(
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    eventInfo.labelVisible? eventInfo.label: '',
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
 
 
   @override
@@ -286,7 +258,11 @@ class MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin{
                 itemCount: _eventList.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (BuildContext context, int index) {
-                  return buildEventItem(_eventList[index]);
+                  return MyEventItem(_eventList[index], (){
+                    Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
+                      return new WebViewPage(_eventList[index].link);
+                    }));
+                  });
                 },
               ),
             )

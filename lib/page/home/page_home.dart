@@ -255,7 +255,9 @@ class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin{
   }
 
   Widget buildHeadline(){
-    return new Container(
+    return _eventList.length <= 0?
+      new Container():
+      new Container(
         width: double.infinity,
         height: 60.0,
 //        margin: EdgeInsets.only(left: 3.0, right: 3.0, bottom: 3.0),

@@ -14,6 +14,7 @@ import 'package:wi_ogsusu/extension/token_master.dart';
 import 'package:wi_ogsusu/common/utils/device_util.dart';
 import 'package:flutter/services.dart';
 import 'page_sports_games_play.dart';
+import 'package:wi_ogsusu/extension/token_master.dart';
 
 // ignore: must_be_immutable
 class SportsGamesDetailPage extends StatefulWidget{
@@ -47,43 +48,51 @@ class _SportsGamesDetailPageState extends State<SportsGamesDetailPage> with Auto
   bool get wantKeepAlive => true;
 
   Future<void> _getGameChannelData() async{
-    setState(() {
-      _loading = true;
-    });
-    String url = Constant.URL_SPORTS_GAME_CHANNELS + _sportGameInfo.channelIds;
-    Response response = await dio.get(url).catchError((DioError e){
-      print("DioError: " + e.toString());
-    });
-    int code = response.data['code'];
-    if(code == 200) {
-      List dataList = response.data['data'];
-      if(mounted) {
-        setState(() {
-          _loading = false;
-          _sportGameChannelList = dataList.map((dataStr) {
-            return new SportGameChannelInfo.fromJson(dataStr);
-          }).toList();
-        });
+    try {
+      setState(() {
+        _loading = true;
+      });
+      String url = Constant.URL_SPORTS_GAME_CHANNELS +
+          _sportGameInfo.channelIds;
+      Response response = await dio.get(url).catchError((DioError e) {
+        print("DioError: " + e.toString());
+      });
+      int code = response.data['code'];
+      if (code == 200) {
+        List dataList = response.data['data'];
+        if (mounted) {
+          setState(() {
+            _loading = false;
+            _sportGameChannelList = dataList.map((dataStr) {
+              return new SportGameChannelInfo.fromJson(dataStr);
+            }).toList();
+          });
+        }
+      } else {
+        print(response.data['msg']);
+        if (mounted) {
+          setState(() {
+            _loading = false;
+          });
+        }
       }
-    }else{
-      print(response.data['msg']);
-      if(mounted) {
-        setState(() {
-          _loading = false;
-        });
-      }
+    }catch(exception){
+      print(exception);
     }
   }
 
   @override
   void initState() {
     super.initState();
+    makeStreamToken();
     _getGameChannelData();
   }
 
   void itemClick(SportGameChannelInfo sportGameChannelInfo){
     getStreamToken().then((token){
+      print(token);
       String method = 'startPlayActivity%%' + sportGameChannelInfo.channelId + "%%" + token;
+      print(method);
       if(_loadable){
         if(DeviceUtil.isAndroid()){
           Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){

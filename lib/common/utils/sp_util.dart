@@ -1,6 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-getSpInt(String key) async {
+Future<int> getSpInt(String key) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   return prefs.getInt(key) ?? 0;
 }
@@ -10,7 +10,7 @@ setSpInt(String key, int value) async {
   await prefs.setInt(key, value);
 }
 
-getSpString(String key) async {
+Future<String> getSpString(String key) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   return prefs.getString(key) ?? null;
 }

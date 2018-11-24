@@ -14,6 +14,8 @@ import 'dart:async';
 import 'package:wi_ogsusu/widget/video.dart';
 import 'package:wi_ogsusu/extension/token_master.dart';
 import 'package:wi_ogsusu/entities/sport_game_channel_info.dart';
+import 'package:chewie/chewie.dart';
+import 'package:video_player/video_player.dart';
 
 
 class SportsGamesPlayPage extends StatefulWidget{
@@ -34,7 +36,6 @@ class _SportsGamesPlayPageState extends State<SportsGamesPlayPage>{
   bool _detailLoading = false;
   bool _channelLoading = false;
   SportGameChannelInfo _sportGameChannelInfo;
-  List<EpgDetailInfo> _epgDetailList = [];
   ChannelInfo _channelInfo;
   Dio dio = new Dio();
   String localeStr = "en_US";
@@ -91,26 +92,19 @@ class _SportsGamesPlayPageState extends State<SportsGamesPlayPage>{
         color: Colors.black,
       );
     }
-    return new Container(
-      width: deviceSize.width,
-      height: deviceSize.width / 16 * 9,
-      color: Colors.black,
-      child: Video(channelInfo.url),
-    );
-  }
-
-
-  Widget buildTitleWidget(String title){
-    return Container(
-      width: double.infinity,
-      color: Colors.black38,
-      padding: EdgeInsets.all(3.0),
-      child: Text(
-        title,
-        style: TextStyle(
-          fontSize: 20.0,
-        ),
+    return new Chewie(
+      new VideoPlayerController.network(
+        channelInfo.url,
       ),
+      aspectRatio: 16 / 9,
+      autoPlay: true,
+      looping: true,
+      materialProgressColors: ChewieProgressColors(
+        playedColor: Colors.deepOrange,
+        bufferedColor: Colors.deepOrange[100],
+        handleColor: Colors.deepOrange,
+      ),
+      placeholder: Image.asset('res/img/hold1.jpg'),
     );
   }
 
@@ -125,17 +119,19 @@ class _SportsGamesPlayPageState extends State<SportsGamesPlayPage>{
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-//      appBar: AppBar(
-//        backgroundColor: Colors.black,
-//        centerTitle: false,
-//        title: Text(_epgInfo.label),
-//      ),
-      body: new Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        centerTitle: false,
+        title: Text(_sportGameChannelInfo.label),
+      ),
+      body: new Container(
+        width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             buildPlayWidget(_channelInfo),
-            buildTitleWidget(_sportGameChannelInfo.label),
           ],
+        ),
       ),
     );
   }

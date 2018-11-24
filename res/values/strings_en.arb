@@ -29,6 +29,11 @@
   "coins": "Coins",
   "ValidTime": "ValidTime: ",
   "RepCode": "RepCode: ",
-  "popular_events": "Popular events:",
+  "popular_events": "Popular events: ",
+  "points": "POINTS: ",
+  "checked": "Checked",
+  "presents_for_attendance": "PRESENTS FOR ATTENDANCE",
+  "monthly_check_in_days": "MonthlyCheckInDays: ",
+  "continuous_check_in_days": "ContinuousCheckInDays: ",
   "play_list": "Play List"
 }

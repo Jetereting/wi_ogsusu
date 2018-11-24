@@ -29,6 +29,8 @@ dependencies:
   unicorndial: ^1.1.5
   chewie: ^0.8.0
   flutter_webview_plugin: ^0.3.0+2
+  flutter_calendar_carousel: ^1.2.2
+  flushbar: ^1.1.1
 
 dev_dependencies:
   flutter_test:
@@ -85,6 +87,7 @@ flutter:
     - res/img/icons8_vip_96.png
     - res/img/icons8_calendar_plus_96.png
     - res/img/event_1.jpg
+    - res/img/banner_check_in.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
