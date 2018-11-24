@@ -26,6 +26,7 @@ class CheckInPageState extends State<CheckInPage>{
 
   Dio dio = new Dio();
   bool _loading = true;
+  bool _checking = false;
   AppBarBehavior _appBarBehavior = AppBarBehavior.pinned;
   bool _currentChecked = false;
   bool alreadyLogin = false;
@@ -73,9 +74,9 @@ class CheckInPageState extends State<CheckInPage>{
     }
     int code = response.data['code'];
     if(code == 200) {
-      CheckInInfo checkInInfo = new CheckInInfo.fromJson(response.data['data']);
-      print(checkInInfo);
       if(mounted) {
+        CheckInInfo checkInInfo = new CheckInInfo.fromJson(response.data['data']);
+        print(checkInInfo);
         setState(() {
           _checkInInfo = checkInInfo;
           _currentChecked = checkInInfo.currentChecked;
@@ -101,10 +102,16 @@ class CheckInPageState extends State<CheckInPage>{
     if(_currentChecked){
       return;
     }
+    if(_checking){
+      return;
+    }
     if(_userId == null || _userId <= 0){
       ToastUtil.showError(context, 'no login in');
       return;
     }
+    setState(() {
+      _checking = true;
+    });
     String url = Constant.URL_CHECK_IN;
     Response response = await dio.post(url, data: {
       "userId": _userId,
@@ -118,14 +125,23 @@ class CheckInPageState extends State<CheckInPage>{
       return;
     }
     int code = response.data['code'];
+    setState(() {
+      _checking = false;
+    });
     if(code == 200) {
       if(mounted) {
-        UserPointsDetailInfo userPointsDetailInfo = UserPointsDetailInfo.fromJson(response.data['data']);
-        print(userPointsDetailInfo);
+        CheckInInfo checkInInfo = new CheckInInfo.fromJson(response.data['data']);
+        print(checkInInfo);
         setState(() {
+          _checkInInfo = checkInInfo;
           _currentChecked = true;
-          DateTime checkInTime = TimeUtil.parseJavaTime(userPointsDetailInfo.createTime);
-          _markedDateMap[checkInTime] = 1;
+          List<DateTime> checkedDateList = checkInInfo.checkInDetailInfoList.map((checkInDetailInfo){
+            String time = checkInDetailInfo.createTime;
+            return TimeUtil.parseJavaTime(time);
+          }).toList();
+          _markedDateMap = new Map.fromIterable(checkedDateList,
+              key: (item) => item,
+              value: (item) => 1);
         });
       }
     }else{
@@ -178,7 +194,15 @@ class CheckInPageState extends State<CheckInPage>{
             color: _currentChecked? Colors.grey: Colors.pink,
             shape: StadiumBorder(),
             elevation: 4.0,
-            child: Text(
+            child: _checking?
+              SizedBox(
+                width: 26.0,
+                height: 26.0,
+                child: CircularProgressIndicator(
+                  strokeWidth: 3.0,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                ),
+              ):Text(
               _currentChecked? Translations.of(context).text('checked'):
                 Translations.of(context).text('check_in'),
               style: TextStyle(
