@@ -40,6 +40,10 @@
 		CD352FDE219870E500597628 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD352FDD219870E500597628 /* CoreGraphics.framework */; };
 		CD352FE02198726500597628 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD352FDF2198726500597628 /* CoreMedia.framework */; };
 		CD5F3E1121AD3DA700E6377D /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F3E1021AD3DA700E6377D /* PlayerViewController.swift */; };
+		CD74372721AE6F9E002A76BB /* EpgDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD74372621AE6F9E002A76BB /* EpgDetailCell.xib */; };
+		CD74372921AE704A002A76BB /* EpgDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD74372821AE704A002A76BB /* EpgDetailCell.swift */; };
+		CD74372B21AE7093002A76BB /* EpgDetailProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD74372A21AE7093002A76BB /* EpgDetailProvider.swift */; };
+		CD74372D21AE70EE002A76BB /* EpgDetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD74372C21AE70EE002A76BB /* EpgDetailInfo.swift */; };
 		CDF5E669219037FB00FEB7BE /* VideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF5E668219037FB00FEB7BE /* VideoController.swift */; };
 		CDF5E66B21903CF700FEB7BE /* ControllerUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDF5E66A21903CF700FEB7BE /* ControllerUtil.swift */; };
 /* End PBXBuildFile section */
@@ -99,6 +103,10 @@
 		CD352FDF2198726500597628 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		CD352FE12198726C00597628 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		CD5F3E1021AD3DA700E6377D /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		CD74372621AE6F9E002A76BB /* EpgDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EpgDetailCell.xib; sourceTree = "<group>"; };
+		CD74372821AE704A002A76BB /* EpgDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpgDetailCell.swift; sourceTree = "<group>"; };
+		CD74372A21AE7093002A76BB /* EpgDetailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpgDetailProvider.swift; sourceTree = "<group>"; };
+		CD74372C21AE70EE002A76BB /* EpgDetailInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpgDetailInfo.swift; sourceTree = "<group>"; };
 		CDF5E668219037FB00FEB7BE /* VideoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoController.swift; sourceTree = "<group>"; };
 		CDF5E66A21903CF700FEB7BE /* ControllerUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerUtil.swift; sourceTree = "<group>"; };
 		FE9E2AD0273FC3337A4C5EFB /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,6 +216,10 @@
 				CDF5E668219037FB00FEB7BE /* VideoController.swift */,
 				CDF5E66A21903CF700FEB7BE /* ControllerUtil.swift */,
 				CD5F3E1021AD3DA700E6377D /* PlayerViewController.swift */,
+				CD74372621AE6F9E002A76BB /* EpgDetailCell.xib */,
+				CD74372821AE704A002A76BB /* EpgDetailCell.swift */,
+				CD74372A21AE7093002A76BB /* EpgDetailProvider.swift */,
+				CD74372C21AE70EE002A76BB /* EpgDetailInfo.swift */,
 			);
 			path = Runner;
 			sourceTree = "<group>";
@@ -299,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
+				CD74372721AE6F9E002A76BB /* EpgDetailCell.xib in Resources */,
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
 				9740EEB41CF90195004384FC /* Debug.xcconfig in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
@@ -338,7 +351,7 @@
 				"${BUILT_PRODUCTS_DIR}/BMPlayer/BMPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
-				"${PODS_ROOT}/../.symlinks/flutter/ios/Flutter.framework",
+				"${PODS_ROOT}/../.symlinks/flutter/ios-release/Flutter.framework",
 				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
@@ -435,9 +448,12 @@
 				CD199896219010E000AFAE8A /* ChannelInfo.swift in Sources */,
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
 				CD5F3E1121AD3DA700E6377D /* PlayerViewController.swift in Sources */,
+				CD74372921AE704A002A76BB /* EpgDetailCell.swift in Sources */,
 				CD19989A2190111B00AFAE8A /* VideoPlayerViewController.swift in Sources */,
+				CD74372D21AE70EE002A76BB /* EpgDetailInfo.swift in Sources */,
 				CD199898219010F900AFAE8A /* ChannelProvider.swift in Sources */,
 				CD1998AC219021F900AFAE8A /* StringExtension.swift in Sources */,
+				CD74372B21AE7093002A76BB /* EpgDetailProvider.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
 				CD1998AA2190212400AFAE8A /* TimeUtil.swift in Sources */,
 				CDF5E66B21903CF700FEB7BE /* ControllerUtil.swift in Sources */,

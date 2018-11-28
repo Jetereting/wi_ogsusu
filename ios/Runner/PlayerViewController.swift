@@ -14,10 +14,16 @@ class PlayerViewController: UIViewController {
     
     @IBOutlet weak var playView: UIView!
     @IBOutlet weak var maskView: VideoController!
+    @IBOutlet weak var tableView: UITableView!
     
     lazy var channelProvider = {
         return ChannelProvider()
     }()
+    
+    lazy var epgDetailProvider = {
+        return EpgDetailProvider()
+    }()
+    var epgDetailInfoList = [EpgDetailInfo]()
     
     var channelId: String!
     var token: String!
@@ -35,18 +41,34 @@ class PlayerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initTableView()
         channelProvider.loadDelegate = self
+        epgDetailProvider.delegate = self
         if let id = channelId{
             channelProvider.load(channelId: id)
+            epgDetailProvider.load(channelId: id)
         }
         maskView.delegate = self
         maskView.autoresizesSubviews = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+        print("viewWillDisappear")
         player?.stop()
         removeObservers()
+        super.viewWillDisappear(animated)
+    }
+    
+    deinit {
+        print("deinit")
+        player?.stop()
+    }
+    
+    func initTableView(){
+        let nib = UINib(nibName: "EpgDetailCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "EpgDetailCell")
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
 
@@ -99,6 +121,7 @@ extension PlayerViewController: ChannelProviderDelegate{
     @objc func didChangeNotification(notify: Notification){
         if NSNotification.Name.MPMediaPlaybackIsPreparedToPlayDidChange == notify.name{
             maskView.stopLoading()
+            maskView.btnPlay.setImage(UIImage(named: "pause_30"), for: UIControlState.normal)
         }
     }
 }
@@ -145,6 +168,39 @@ extension PlayerViewController: VideoControllerDelegate{
         statusBar.alpha = 1.0
     }
     
+}
+
+extension PlayerViewController: EpgDetailProviderDelegate{
+    func epgDetailProviderDelegate(epgDetailInfos: [EpgDetailInfo]) {
+        print(epgDetailInfos)
+        if epgDetailInfos.count > 0{
+            self.epgDetailInfoList = epgDetailInfos
+            self.tableView.reloadData()
+        }
+    }
+    
+    func epgDetailProviderDelegate(_ message: String, _ error: Error?) {
+        print(message)
+    }
+    
+}
+
+
+extension PlayerViewController: UITableViewDelegate, UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return epgDetailInfoList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "EpgDetailCell", for: indexPath) as! EpgDetailCell
+        cell.setData(self.epgDetailInfoList[indexPath.row])
+        return cell
+    }
     
     
 }

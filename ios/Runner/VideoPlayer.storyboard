@@ -80,7 +80,19 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bmg-xL-h7c">
                                 <rect key="frame" x="0.0" y="211" width="375" height="456"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="92q-J8-2wO">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="456"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableView>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="92q-J8-2wO" secondAttribute="bottom" id="2ya-WJ-wKP"/>
+                                    <constraint firstItem="92q-J8-2wO" firstAttribute="top" secondItem="bmg-xL-h7c" secondAttribute="top" id="GIX-oV-MUg"/>
+                                    <constraint firstAttribute="trailing" secondItem="92q-J8-2wO" secondAttribute="trailing" id="QUW-kW-vjI"/>
+                                    <constraint firstItem="92q-J8-2wO" firstAttribute="leading" secondItem="bmg-xL-h7c" secondAttribute="leading" id="YDs-ZO-d3D"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -101,6 +113,7 @@
                     <connections>
                         <outlet property="maskView" destination="bKu-75-HFS" id="eMx-jO-c3Q"/>
                         <outlet property="playView" destination="bsh-Eb-zYx" id="wmn-wz-Jrl"/>
+                        <outlet property="tableView" destination="92q-J8-2wO" id="JnB-rf-DTH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rY5-Ic-aJm" userLabel="First Responder" sceneMemberID="firstResponder"/>

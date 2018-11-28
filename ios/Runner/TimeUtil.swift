@@ -71,6 +71,16 @@ class TimeUtil{
         return getTimeString(from: NSDate() as Date)
     }
     
+    static func getTimeString(unixTime: Int, format: String) -> String?{
+        let formatter = DateFormatter()
+        formatter.timeZone = NSTimeZone.system
+        formatter.locale = Locale.init(identifier: "en_US")
+        formatter.dateFormat = format
+        let timeInterval:TimeInterval = TimeInterval(unixTime)
+        let date = NSDate(timeIntervalSince1970: timeInterval) as Date
+        return formatter.string(from: date)
+    }
+    
     
     static func getTimeString(from date: Date) -> String?{
         let formatter = DateFormatter()

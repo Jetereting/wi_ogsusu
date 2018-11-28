@@ -64,7 +64,7 @@ class TimeUtil{
   ///unix时间转时间文本并用文本形式指定locale
   static String toStrTimeWithLocaleStr(int timestamp, String str) {
     var now = new DateTime.now();
-    var format = new DateFormat('HH:mm a', str);
+    var format = new DateFormat('hh:mm a', str);
     var date = new DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);
     var diff = now.difference(date);
     var time = '';

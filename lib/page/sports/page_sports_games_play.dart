@@ -39,6 +39,7 @@ class _SportsGamesPlayPageState extends State<SportsGamesPlayPage>{
   ChannelInfo _channelInfo;
   Dio dio = new Dio();
   String localeStr = "en_US";
+  VideoPlayerController _videoPlayerController;
 
   _SportsGamesPlayPageState(SportGameChannelInfo sportGameChannelInfo){
     this._sportGameChannelInfo = sportGameChannelInfo;
@@ -92,10 +93,11 @@ class _SportsGamesPlayPageState extends State<SportsGamesPlayPage>{
         color: Colors.black,
       );
     }
+    _videoPlayerController = VideoPlayerController.network(
+      channelInfo.url,
+    );
     return new Chewie(
-      new VideoPlayerController.network(
-        channelInfo.url,
-      ),
+      _videoPlayerController,
       aspectRatio: 16 / 9,
       autoPlay: true,
       looping: true,
@@ -111,8 +113,9 @@ class _SportsGamesPlayPageState extends State<SportsGamesPlayPage>{
 
   @override
   void dispose() {
-    super.dispose();
+    _videoPlayerController.dispose();
     dio.clear();
+    super.dispose();
   }
 
 
