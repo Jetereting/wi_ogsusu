@@ -76,17 +76,19 @@ class CheckInPageState extends State<CheckInPage>{
     if(code == 200) {
       if(mounted) {
         CheckInInfo checkInInfo = new CheckInInfo.fromJson(response.data['data']);
-        print(checkInInfo);
         setState(() {
           _checkInInfo = checkInInfo;
           _currentChecked = checkInInfo.currentChecked;
-          List<DateTime> checkedDateList = checkInInfo.checkInDetailInfoList.map((checkInDetailInfo){
-            String time = checkInDetailInfo.createTime;
-            return TimeUtil.parseJavaTime(time);
-          }).toList();
-          _markedDateMap = new Map.fromIterable(checkedDateList,
-              key: (item) => item,
-              value: (item) => 1);
+          if(checkInInfo.checkInDetailInfoList != null) {
+            List<DateTime> checkedDateList = checkInInfo.checkInDetailInfoList
+                .map((checkInDetailInfo) {
+              String time = checkInDetailInfo.createTime;
+              return TimeUtil.strToDateTime(time);
+            }).toList();
+            _markedDateMap = new Map.fromIterable(checkedDateList,
+                key: (item) => item,
+                value: (item) => 1);
+          }
         });
       }
     }else{
@@ -99,7 +101,7 @@ class CheckInPageState extends State<CheckInPage>{
   }
 
   Future<void> _checkIn() async{
-    if(_currentChecked){
+    if(_currentChecked != null && _currentChecked){
       return;
     }
     if(_checking){
@@ -131,17 +133,19 @@ class CheckInPageState extends State<CheckInPage>{
     if(code == 200) {
       if(mounted) {
         CheckInInfo checkInInfo = new CheckInInfo.fromJson(response.data['data']);
-        print(checkInInfo);
         setState(() {
           _checkInInfo = checkInInfo;
           _currentChecked = true;
-          List<DateTime> checkedDateList = checkInInfo.checkInDetailInfoList.map((checkInDetailInfo){
-            String time = checkInDetailInfo.createTime;
-            return TimeUtil.parseJavaTime(time);
-          }).toList();
-          _markedDateMap = new Map.fromIterable(checkedDateList,
-              key: (item) => item,
-              value: (item) => 1);
+          if(checkInInfo.checkInDetailInfoList != null) {
+            List<DateTime> checkedDateList = checkInInfo.checkInDetailInfoList
+                .map((checkInDetailInfo) {
+              String time = checkInDetailInfo.createTime;
+              return TimeUtil.strToDateTime(time);
+            }).toList();
+            _markedDateMap = new Map.fromIterable(checkedDateList,
+                key: (item) => item,
+                value: (item) => 1);
+          }
         });
       }
     }else{
@@ -179,7 +183,7 @@ class CheckInPageState extends State<CheckInPage>{
             ),
           ),
           Text(
-            '0',
+            _checkInInfo.points.toString(),
             style: TextStyle(
               color: Colors.red,
               fontSize: 20.0,
@@ -191,7 +195,7 @@ class CheckInPageState extends State<CheckInPage>{
             onPressed: (){
               _checkIn();
             },
-            color: _currentChecked? Colors.grey: Colors.pink,
+            color: _currentChecked != null && _currentChecked? Colors.grey: Colors.pink,
             shape: StadiumBorder(),
             elevation: 4.0,
             child: _checking?
@@ -203,7 +207,7 @@ class CheckInPageState extends State<CheckInPage>{
                   valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                 ),
               ):Text(
-              _currentChecked? Translations.of(context).text('checked'):
+              _currentChecked != null && _currentChecked? Translations.of(context).text('checked'):
                 Translations.of(context).text('check_in'),
               style: TextStyle(
                 color: Colors.white
@@ -240,7 +244,7 @@ class CheckInPageState extends State<CheckInPage>{
         selectedDayBorderColor: Colors.orange,
         todayBorderColor: Colors.blue,
         todayButtonColor: Colors.lightGreen,
-        height: 360.0,
+        height: 400.0,
 //        selectedDateTime: _selectDate,
         showHeaderButton: false,
         daysHaveCircularBorder: false, /// null for not rendering any border, true for circular border, false for rectangular border

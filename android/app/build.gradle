@@ -33,7 +33,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.wiatec.ogsusu"
+        applicationId "com.wiatec.wiogsusu"
         minSdkVersion 21
         targetSdkVersion 27
         versionCode 104

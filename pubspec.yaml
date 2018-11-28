@@ -88,6 +88,8 @@ flutter:
     - res/img/icons8_calendar_plus_96.png
     - res/img/event_1.jpg
     - res/img/banner_check_in.jpg
+    - res/img/bg_card.png
+    - res/img/check_in.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.

@@ -107,12 +107,13 @@ class _MediaEpgPageState extends State<MediaEpgPage> with AutomaticKeepAliveClie
     }else{
       next = 'Next: ' + epgInfo.nextPlay;
     }
-    return new GestureDetector(
+    return new InkWell(
       onTap: (){
         itemClick(epgInfo);
       },
       child: new Container(
-        width: deviceSize.width,
+        color: Colors.transparent,
+        width: double.infinity,
         padding: EdgeInsets.all(3.0),
         child: new Column(
           children: <Widget>[

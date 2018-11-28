@@ -99,11 +99,13 @@ class _SportsGamesPageState extends State<SportsGamesPage> with AutomaticKeepAli
       print(e);
       t = sportGameInfo.time;
     }
-    return new GestureDetector(
+    return new InkWell(
       onTap: (){
         _onItemClick(sportGameInfo);
       },
       child: new Container(
+        width: double.infinity,
+        color: Colors.transparent,
         padding: EdgeInsets.all(3.0),
         child: new Row(
           children: <Widget>[

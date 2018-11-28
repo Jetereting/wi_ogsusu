@@ -31,7 +31,8 @@ import Flutter
     
     private func launchVideoPlayController(_ controller: UIViewController, channelId: String, token: String) {
         let board: UIStoryboard = UIStoryboard(name: "VideoPlayer", bundle: nil)
-        let videoController = board.instantiateViewController(withIdentifier: "VideoPlayerViewController") as! VideoPlayerViewController
+//        let videoController = board.instantiateViewController(withIdentifier: "VideoPlayerViewController") as! VideoPlayerViewController
+        let videoController = board.instantiateViewController(withIdentifier: "PlayerViewController") as! PlayerViewController
         videoController.channelId = channelId
         videoController.token = token
         controller.present(videoController, animated: false, completion: nil)

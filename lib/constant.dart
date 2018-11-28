@@ -13,6 +13,7 @@ class Constant{
   static const URL_POPULAR_EVENTS = URL_CUSTOMER + "events";
   static const URL_CHECK_IN = URL_CUSTOMER + "checkin";
   static const URL_CHECK_IN_DETAILS = URL_CUSTOMER + "checkin/details";
+  static const URL_CREDITS = URL_CUSTOMER + "credits/";
 
   static const URL_EXTENSION = "http://extension.vipnow.work/";
   static const URL_SPORTS_EVENTS = URL_EXTENSION + "sports/events";

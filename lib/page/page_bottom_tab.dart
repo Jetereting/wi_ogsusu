@@ -5,6 +5,13 @@ import 'package:wi_ogsusu/page/sports/page_sports.dart';
 import 'package:wi_ogsusu/page/media/page_meida.dart';
 import 'package:wi_ogsusu/page/mall/page_mall.dart';
 import 'package:wi_ogsusu/page/my/page_my.dart';
+import 'package:wi_ogsusu/constant.dart';
+import 'package:wi_ogsusu/data/check_in_provider.dart';
+import 'package:wi_ogsusu/entities/check_in_info.dart';
+import 'package:wi_ogsusu/common/utils/sp_util.dart';
+import 'package:dio/dio.dart';
+import 'package:wi_ogsusu/dialog/dialog_check_in_notice.dart';
+
 
 class PageTab extends StatefulWidget {
   @override
@@ -13,6 +20,7 @@ class PageTab extends StatefulWidget {
 
 class _PageTabState extends State<PageTab> with SingleTickerProviderStateMixin {
 
+  Dio dio = Dio();
   int _currentIndex = 0;
   var _controller = PageController(
     initialPage: 0,
@@ -25,6 +33,36 @@ class _PageTabState extends State<PageTab> with SingleTickerProviderStateMixin {
     MallPage(),
     MyPage(),
   ];
+
+  getCheckInDetailData() async{
+    int userId = await getSpInt(Constant.SP_KEY_USER_ID);
+    CheckInProvider checkInProvider = CheckInProvider(dio, userId);
+    checkInProvider.getCheckInData((data){
+      CheckInInfo checkInInfo = data;
+      if(checkInInfo.currentChecked == null || !checkInInfo.currentChecked){
+        showCheckInNoticeDialog();
+      }
+    }, (e){
+      print(e);
+    });
+  }
+
+  showCheckInNoticeDialog(){
+    showDialog<Null>(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return new CheckInNoticeDialog();
+        });
+  }
+
+
+
+  @override
+  void initState() {
+    super.initState();
+    getCheckInDetailData();
+  }
 
   @override
   void dispose() {

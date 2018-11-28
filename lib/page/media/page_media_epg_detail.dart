@@ -39,6 +39,7 @@ class _MediaEpgDetailPageState extends State<MediaEpgDetailPage>{
   ChannelInfo _channelInfo;
   Dio dio = new Dio();
   String localeStr = "en_US";
+  VideoPlayerController _videoPlayerController;
 
   _MediaEpgDetailPageState(EpgInfo epgInfo){
     this._epgInfo = epgInfo;
@@ -113,6 +114,17 @@ class _MediaEpgDetailPageState extends State<MediaEpgDetailPage>{
     _getChannelData();
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    dio.clear();
+    if(_videoPlayerController != null){
+      _videoPlayerController.pause();
+      _videoPlayerController.dispose();
+    }
+  }
+
+
   Widget buildEpgPlayWidget(ChannelInfo channelInfo){
     var deviceSize = MediaQuery.of(context).size;
     if(channelInfo == null) {
@@ -122,10 +134,11 @@ class _MediaEpgDetailPageState extends State<MediaEpgDetailPage>{
         color: Colors.black,
       );
     }
+    _videoPlayerController = VideoPlayerController.network(
+      channelInfo.url,
+    );
     return new Chewie(
-      new VideoPlayerController.network(
-        channelInfo.url,
-      ),
+      _videoPlayerController,
       aspectRatio: 16 / 9,
       autoPlay: true,
       looping: true,
@@ -252,12 +265,6 @@ class _MediaEpgDetailPageState extends State<MediaEpgDetailPage>{
     );
   }
 
-
-  @override
-  void dispose() {
-    super.dispose();
-    dio.clear();
-  }
 
 
   @override

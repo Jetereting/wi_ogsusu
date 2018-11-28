@@ -8,6 +8,9 @@ import 'package:wi_ogsusu/entities/tool_info.dart';
 import 'package:wi_ogsusu/entities/event_info.dart';
 import 'package:wi_ogsusu/page/page_web_view.dart';
 import 'package:wi_ogsusu/page/my/check_in/page_check_in.dart';
+import 'package:wi_ogsusu/page/my/vip/page_vip.dart';
+import 'package:wi_ogsusu/page/my/coin/page_coin.dart';
+import 'package:wi_ogsusu/page/my/credit_card/page_credit_card.dart';
 import 'package:wi_ogsusu/constant.dart';
 import 'package:wi_ogsusu/common/utils/time_util.dart';
 import 'package:dio/dio.dart';
@@ -115,6 +118,18 @@ class MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin{
     if(toolInfo.action == 1){
       Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
         return new CheckInPage();
+      }));
+    }else if(toolInfo.action == 2){
+      Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
+        return new VipPage();
+      }));
+    }else if(toolInfo.action == 3){
+      Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
+        return new CoinPage();
+      }));
+    }else if(toolInfo.action == 4){
+      Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
+        return new CreditCardPage();
       }));
     }
   }

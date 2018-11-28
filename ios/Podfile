@@ -36,6 +36,7 @@ target 'Runner' do
   pod 'Kingfisher', '~> 4.5.0'
   pod 'Hero', '~> 1.1.0'
   pod 'TXLiteAVSDK_Player', :podspec => 'http://pod-1252463788.cosgz.myqcloud.com/liteavsdkspec/TXLiteAVSDK_Player.podspec'
+  pod 'KSYMediaPlayer_iOS/KSYMediaPlayer_vod'
 #  pod 'SuperPlayer'
 
   # Prepare symlinks folder. We use symlinks to avoid having Podfile.lock

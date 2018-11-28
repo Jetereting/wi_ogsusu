@@ -14,13 +14,12 @@ import TXLiteAVSDK_Player
 protocol VideoControllerDelegate {
     func close()
     func playOrPause(btnPlay: UIButton)
-    func fullScreen(isFullScreen: Bool)
+    func fullScreen()
 }
 
 class VideoController: UIView{
 
     var delegate: VideoControllerDelegate?
-    var controller: UIViewController?
     var controlView: UIView!
     var btnClose: UIButton!
     var btnPlay: UIButton!
@@ -30,7 +29,6 @@ class VideoController: UIView{
     var loadingView: UIActivityIndicatorView!
     var progressBar: UIProgressView!
     
-    var isFullScreen: Bool = false
     var isPlaying: Bool = false
     
     required init?(coder aDecoder: NSCoder) {
@@ -38,12 +36,14 @@ class VideoController: UIView{
         initUI()
     }
     
-    func initUI(){
-        createControlView()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        initUI()
     }
     
-    func attachController(_ controller: UIViewController){
-        self.controller = controller
+    func initUI(){
+        createControlView()
+        startLoading()
     }
     
     func createControlView(){
@@ -51,10 +51,7 @@ class VideoController: UIView{
         controlView.backgroundColor = UIColor.clear
         self.addSubview(controlView)
         controlView.snp.makeConstraints {
-            $0.top.equalTo(self)
-            $0.bottom.equalTo(self)
-            $0.left.equalTo(self)
-            $0.right.equalTo(self)
+            $0.edges.equalTo(self)
         }
         createCloseButton()
         createLoadingView()
@@ -67,27 +64,27 @@ class VideoController: UIView{
     
     func createCloseButton(){
         btnClose = UIButton.init()
-        btnClose.setImage(UIImage(named: "close30"), for: UIControlState.normal)
+        btnClose.setImage(UIImage(named: "back_30"), for: UIControlState.normal)
         btnClose.addTarget(self, action: #selector(close), for: UIControlEvents.touchUpInside)
         controlView.addSubview(btnClose)
         btnClose.snp.makeConstraints {
-            $0.top.equalTo(controlView).offset(20)
+            $0.top.equalTo(controlView).offset(30)
             $0.left.equalTo(controlView).offset(15)
-            $0.width.equalTo(25)
-            $0.height.equalTo(25)
+            $0.width.equalTo(30)
+            $0.height.equalTo(30)
         }
     }
     
     @objc private func close() {
-        print("close")
         if let delega = self.delegate{
             delega.close();
         }
     }
     
     func createLoadingView(){
-        loadingView = UIActivityIndicatorView.init()
+        loadingView = UIActivityIndicatorView.init(activityIndicatorStyle:.whiteLarge)
         loadingView.color = UIColor.white
+        loadingView.hidesWhenStopped = true
         controlView.addSubview(loadingView)
         loadingView.snp.makeConstraints {
             $0.center.equalTo(controlView.snp.center)
@@ -96,11 +93,18 @@ class VideoController: UIView{
         }
     }
     
+    func startLoading(){
+        loadingView.startAnimating()
+    }
+    
+    func stopLoading(){
+        loadingView.stopAnimating()
+    }
+    
     
     func createFullScreenButton(){
         btnFulScreen = UIButton.init()
-        let icon = isFullScreen ? UIImage(named: "full_out_30"): UIImage(named: "full_in_30")
-        btnFulScreen.setImage(icon, for: UIControlState.normal)
+        updateBtnFullScreenIcon()
         btnFulScreen.addTarget(self, action: #selector(fullScreen), for: UIControlEvents.touchUpInside)
         controlView.addSubview(btnFulScreen)
         btnFulScreen.snp.makeConstraints {
@@ -111,16 +115,23 @@ class VideoController: UIView{
         }
     }
     
+    func updateBtnFullScreenIcon(){
+        let icon = isFullScreen ? UIImage(named: "full_out_30"): UIImage(named: "full_in_30")
+        btnFulScreen.setImage(icon, for: UIControlState.normal)
+    }
+    
+    fileprivate var isFullScreen:Bool {
+        get {
+            return UIApplication.shared.statusBarOrientation.isLandscape
+        }
+    }
+    
     @objc private func fullScreen() {
-        isFullScreen = !isFullScreen
         if let delega = self.delegate{
-            delega.fullScreen(isFullScreen: isFullScreen)
+            delega.fullScreen()
         }
-        if(isFullScreen){
-            btnFulScreen.setImage(UIImage(named: "full_out_30"), for: UIControlState.normal)
-        }else{
-            btnFulScreen.setImage(UIImage(named: "full_in_30"), for: UIControlState.normal)
-        }
+        updateBtnFullScreenIcon()
+        self.controlView.layoutIfNeeded();
     }
     
     func createPlayButton(){

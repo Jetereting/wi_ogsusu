@@ -7,7 +7,7 @@ import 'package:wi_ogsusu/constant.dart';
 import 'package:wi_ogsusu/page/page_bottom_tab.dart';
 import 'package:wi_ogsusu/page/page_login.dart';
 import 'package:wi_ogsusu/locale/translations.dart';
-import 'package:wi_ogsusu/constant.dart';
+
 
 class Splash extends StatefulWidget{
 

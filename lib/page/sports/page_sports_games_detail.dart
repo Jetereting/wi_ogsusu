@@ -110,8 +110,9 @@ class _SportsGamesDetailPageState extends State<SportsGamesDetailPage> with Auto
     var deviceSize = MediaQuery.of(context).size;
     return new Container(
       width: double.infinity,
+      color: Colors.transparent,
       padding: EdgeInsets.all(3.0),
-      child: new GestureDetector(
+      child: new InkWell(
         onTap: (){
           itemClick(sportGameChannelInfo);
         },

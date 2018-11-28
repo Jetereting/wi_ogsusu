@@ -10,9 +10,11 @@ class CheckInInfo extends Object {
   @JsonKey()
   int userId;
   @JsonKey()
-  int checkInDays;
+  int checkInDays = 0;
   @JsonKey()
-  int checkInContinuousDays;
+  int checkInContinuousDays = 0;
+  @JsonKey()
+  int points = 0;
   @JsonKey()
   int type;
   @JsonKey()
@@ -22,7 +24,7 @@ class CheckInInfo extends Object {
   @JsonKey()
   int flag;
   @JsonKey()
-  bool currentChecked;
+  bool currentChecked = false;
   @JsonKey()
   String createTime;
   @JsonKey()
@@ -32,14 +34,15 @@ class CheckInInfo extends Object {
 
   factory CheckInInfo.fromJson(Map<String, dynamic> json) => _$CheckInInfoFromJson(json);
 
+
   CheckInInfo(this.id, this.userId, this.checkInDays,
-      this.checkInContinuousDays, this.type, this.agent, this.platform,
-      this.flag, this.currentChecked, this.createTime, this.modifyTime,
-      this.checkInDetailInfoList);
+      this.checkInContinuousDays, this.points, this.type, this.agent,
+      this.platform, this.flag, this.currentChecked, this.createTime,
+      this.modifyTime, this.checkInDetailInfoList);
 
   @override
   String toString() {
-    return 'CheckInInfo{id: $id, userId: $userId, checkInDays: $checkInDays, checkInContinuousDays: $checkInContinuousDays, type: $type, agent: $agent, platform: $platform, flag: $flag, currentChecked: $currentChecked, createTime: $createTime, modifyTime: $modifyTime, checkInDetailInfoList: $checkInDetailInfoList}';
+    return 'CheckInInfo{id: $id, userId: $userId, checkInDays: $checkInDays, checkInContinuousDays: $checkInContinuousDays, points: $points, type: $type, agent: $agent, platform: $platform, flag: $flag, currentChecked: $currentChecked, createTime: $createTime, modifyTime: $modifyTime, checkInDetailInfoList: $checkInDetailInfoList}';
   }
 
 

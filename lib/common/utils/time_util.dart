@@ -18,9 +18,9 @@ class TimeUtil{
     return int.parse(millis.substring(0, millis.length - 3));
   }
 
-  ///解析java返回的文本时间 eg. 2019-11-06T15:29:33.000+0000
-  static DateTime parseJavaTime(String time) {
-    var format = new DateFormat('yyyy-MM-ddTHH:mm:ss', 'en_US');
+  ///解析文本时间 eg. 2019-11-06 15:29:33
+  static DateTime strToDateTime(String time) {
+    var format = new DateFormat('yyyy-MM-dd HH:mm:ss', 'en_US');
     DateTime dateTime = format.parse(time.substring(0, 19));
     return dateTime;
   }
