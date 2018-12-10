@@ -59,11 +59,6 @@ class PlayerViewController: UIViewController {
         super.viewWillDisappear(animated)
     }
     
-    deinit {
-        print("deinit")
-        player?.stop()
-    }
-    
     func initTableView(){
         let nib = UINib(nibName: "EpgDetailCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "EpgDetailCell")
@@ -201,6 +196,5 @@ extension PlayerViewController: UITableViewDelegate, UITableViewDataSource{
         cell.setData(self.epgDetailInfoList[indexPath.row])
         return cell
     }
-    
     
 }

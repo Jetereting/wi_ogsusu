@@ -63,6 +63,9 @@ class PageLoginState extends State<PageLogin>{
         showError(context, response.data['msg']);
       }
     }catch (exception){
+      setState(() {
+        _loading = false;
+      });
       showError(context, 'network connect fail, try again later');
     }
   }

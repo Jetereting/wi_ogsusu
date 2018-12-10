@@ -50,6 +50,7 @@ class S implements WidgetsLocalizations {
   String get points => "POINTS: ";
   String get popular_events => "Popular events: ";
   String get presents_for_attendance => "PRESENTS FOR ATTENDANCE";
+  String get search => "Search";
   String get signup => "SignUp";
   String get sports => "Sports";
   String get sports_guide => "Sports Guide";
@@ -85,6 +86,8 @@ class zh extends S {
   String get password => "密码";
   @override
   String get logout => "退出";
+  @override
+  String get search => "查找";
   @override
   String get basketball => "篮球";
   @override

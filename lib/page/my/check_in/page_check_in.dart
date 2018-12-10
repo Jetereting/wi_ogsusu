@@ -244,7 +244,7 @@ class CheckInPageState extends State<CheckInPage>{
         selectedDayBorderColor: Colors.orange,
         todayBorderColor: Colors.blue,
         todayButtonColor: Colors.lightGreen,
-        height: 400.0,
+        height: 420.0,
 //        selectedDateTime: _selectDate,
         showHeaderButton: false,
         daysHaveCircularBorder: false, /// null for not rendering any border, true for circular border, false for rectangular border

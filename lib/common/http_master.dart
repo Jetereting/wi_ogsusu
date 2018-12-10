@@ -73,6 +73,32 @@ class HttpMaster {
     }
   }
 
+
+
+
+  Future<Result> getNative(String path, {data, Options options, CancelToken cancelToken}) async {
+    try {
+      Response response = await dio.get(path,
+          data: data, options: options, cancelToken: cancelToken);
+      Result result = Result();
+      result.code = response.statusCode;
+      if(response.statusCode == 200){
+        result.msg = "Successfully";
+        result.data = response.data;
+      }else{
+        result.msg = "Failure";
+        result.data = response.data['data'];
+      }
+      return result;
+    } on DioError catch (e) {
+      String msg = this.formatErrorMessage(e.type);
+      Result result = Result();
+      result.code = 510;
+      result.msg = msg;
+      return result;
+    }
+  }
+
   Future<Result> post(String path, {data, Options options, CancelToken cancelToken}) async {
     try {
       Response response = await dio.post(path,

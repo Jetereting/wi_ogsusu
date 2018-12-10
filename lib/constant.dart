@@ -34,6 +34,11 @@ class Constant{
   static const URL_MALL_PRODUCT_SKUS = URL_MALL + "product/sku/";
 
 
+  static const UFC_EVENTS = "http://ufc-data-api.ufc.com/api/v1/us/events";
+  static const UFC_NEWS = "http://ufc-data-api.ufc.com/api/v1/us/news/";
+  static const UFC_FIGHTERS = "http://ufc-data-api.ufc.com/api/v1/us/fighters/";
+
+
   static const URL_STREAM_TOKEN = "http://apius.protv.company/v1/get_token.do?reg_date=";
 
 

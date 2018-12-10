@@ -112,37 +112,38 @@ class _SportsGamesDetailPageState extends State<SportsGamesDetailPage> with Auto
       width: double.infinity,
       color: Colors.transparent,
       padding: EdgeInsets.all(3.0),
-      child: new InkWell(
-        onTap: (){
-          itemClick(sportGameChannelInfo);
-        },
-        child: new Row(
-          children: <Widget>[
-            Container(
-              width: deviceSize.width / 5,
-              child: new AspectRatio(
-                aspectRatio: 16.0 / 9.0,
-                child: new Container(
-                  child: FadeInImage.assetNetwork(
-                    placeholder: 'res/img/hold.jpg',
-                    image: sportGameChannelInfo.icon,
-                    fit: BoxFit.fill,
-                  ),
+      child: new Row(
+        children: <Widget>[
+          Container(
+            width: deviceSize.width / 5,
+            child: new AspectRatio(
+              aspectRatio: 16.0 / 9.0,
+              child: new Container(
+                child: FadeInImage.assetNetwork(
+                  placeholder: 'res/img/hold.jpg',
+                  image: sportGameChannelInfo.icon,
+                  fit: BoxFit.fill,
                 ),
               ),
             ),
-            SizedBox(width: 10.0,),
-            Expanded(
-              child: Text(
-                sportGameChannelInfo.label,
-                maxLines: 2,
-                style: TextStyle(
-                  fontSize: 15.0,
-                ),
+          ),
+          SizedBox(width: 10.0,),
+          Expanded(
+            child: Text(
+              sportGameChannelInfo.label,
+              maxLines: 2,
+              style: TextStyle(
+                fontSize: 15.0,
               ),
             ),
-          ],
-        ),
+          ),
+          new IconButton(
+              icon: Icon(Icons.play_circle_outline, color: Colors.black54, size: 30.0,),
+              onPressed: (){
+                itemClick(sportGameChannelInfo);
+              }
+          )
+        ],
       )
     );
   }

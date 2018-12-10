@@ -17,17 +17,24 @@ class VideoPlayerViewController: UIViewController{
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var playView: UIView!
     @IBOutlet weak var controllerView: VideoController!
+    @IBOutlet weak var tableView: UITableView!
     
     var player: TXVodPlayer = TXVodPlayer.init()
-    
+    var timer: Timer!
 
     lazy var channelProvider = {
         return ChannelProvider()
     }()
     
+    lazy var epgDetailProvider = {
+        return EpgDetailProvider()
+    }()
+    var epgDetailInfoList = [EpgDetailInfo]()
+    
     var channelId: String!
     var token: String!
     
+    var controllerShowed = true
     let screenw = UIScreen.main.bounds.size.width
     let screenh = UIScreen.main.bounds.size.height
     var statusBar: UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView
@@ -40,16 +47,27 @@ class VideoPlayerViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initTableView()
         player.vodDelegate = self
         player.setupVideoWidget(playView, insert: 0)
-        
+    
         controllerView.delegate = self
-
         channelProvider.loadDelegate = self
+        epgDetailProvider.delegate = self
         print(channelId)
         if let id = channelId{
             channelProvider.load(channelId: id)
+            epgDetailProvider.load(channelId: id)
         }
+        addVideoControllerGesture()
+    }
+    
+    
+    func initTableView(){
+        let nib = UINib(nibName: "EpgDetailCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "EpgDetailCell")
+        tableView.dataSource = self
+        tableView.delegate = self
     }
     
     func parseUrl(_ channelInfo: ChannelInfo){
@@ -73,12 +91,8 @@ class VideoPlayerViewController: UIViewController{
         releasePlayer()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        releasePlayer()
-    }
-    
     func releasePlayer(){
+        print("releasePlayer")
         player.pause()
         player.stopPlay()
         player.removeVideoWidget()
@@ -100,6 +114,7 @@ class VideoPlayerViewController: UIViewController{
 extension VideoPlayerViewController: ChannelProviderDelegate{
     
     func loadSuccess(channelInfo: ChannelInfo) {
+        controllerView.setTitle(channelInfo.label)
         parseUrl(channelInfo)
     }
     
@@ -113,8 +128,16 @@ extension VideoPlayerViewController: ChannelProviderDelegate{
 extension VideoPlayerViewController: TXVodPlayListener{
     func onPlayEvent(_ player: TXVodPlayer!, event EvtID: Int32, withParam param: [AnyHashable : Any]!) {
         if(EvtID == PLAY_EVT_PLAY_BEGIN.rawValue){
+            print("play start ...")
             controllerView.btnPlay.setImage(UIImage(named: "pause_30"), for: UIControlState.normal)
             controllerView.stopLoading()
+            startIntervel()
+        }
+        
+        if EvtID == PLAY_EVT_PLAY_LOADING.rawValue{
+            print("buffing...")
+            controllerView.startLoading()
+            controllerView.alpha = 1.0
         }
         
         if (EvtID == PLAY_EVT_PLAY_PROGRESS.rawValue) {
@@ -141,6 +164,7 @@ extension VideoPlayerViewController: VideoControllerDelegate{
             toPortrait()
             controllerView.updateBtnFullScreenIcon()
         }else{
+            print("onClose")
             releasePlayer()
             self.dismiss(animated: false, completion: nil)
         }
@@ -181,7 +205,6 @@ extension VideoPlayerViewController: VideoControllerDelegate{
     }
     
     func toPortrait(){
-        
         UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
         statusBar.alpha = 1.0
 //        UIApplication.shared.setStatusBarHidden(false, with: .fade)
@@ -193,5 +216,96 @@ extension VideoPlayerViewController: VideoControllerDelegate{
 //            self.view.layoutIfNeeded();
 //        }
     }
+
+}
+
+
+extension VideoPlayerViewController: EpgDetailProviderDelegate{
+    func epgDetailProviderDelegate(epgDetailInfos: [EpgDetailInfo]) {
+        if epgDetailInfos.count > 0{
+            self.epgDetailInfoList = epgDetailInfos
+            self.tableView.reloadData()
+        }
+    }
     
+    func epgDetailProviderDelegate(_ message: String, _ error: Error?) {
+        print(message)
+        var epgDetailInfo: EpgDetailInfo = EpgDetailInfo()
+        epgDetailInfo.startTime = TimeUtil.getUnixTimestamp()
+        epgDetailInfo.endTime = TimeUtil.getUnixTimestamp() + 3600
+        epgDetailInfo.label = "Local programming ..."
+        epgDetailInfo.channelId = channelId
+        let epgDetailInfoList1 = [epgDetailInfo]
+        print(epgDetailInfoList1)
+        self.epgDetailInfoList = epgDetailInfoList1
+        self.tableView.reloadData()
+    }
+    
+}
+
+
+extension VideoPlayerViewController: UITableViewDelegate, UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return epgDetailInfoList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "EpgDetailCell", for: indexPath) as! EpgDetailCell
+        cell.setData(self.epgDetailInfoList[indexPath.row])
+        return cell
+    }
+    
+}
+
+extension VideoPlayerViewController{
+    
+    func addVideoControllerGesture(){
+        controllerView.isUserInteractionEnabled = true
+        let gesture = UITapGestureRecognizer.init(target: self, action: #selector(onGesture))
+        controllerView.addGestureRecognizer(gesture)
+    }
+
+    
+    @objc func onGesture(){
+        print("onGesture")
+        if(!controllerShowed){
+            controllerView.updateSubView(true)
+            controllerShowed = true
+            startIntervel()
+        }else{
+            controllerView.updateSubView(false)
+            controllerShowed = false
+            if(timer != nil){
+                timer.invalidate()
+                timer = nil
+            }
+        }
+    }
+    
+    func startIntervel(){
+        if(!controllerShowed){
+            return
+        }
+        print("startIntervel")
+        if(timer != nil){
+            timer.invalidate()
+            timer = nil
+        }
+        timer = Timer.scheduledTimer(timeInterval: 12.00, target: self, selector: #selector(timeAction), userInfo: nil, repeats: false)
+    }
+    
+    @objc func timeAction(){
+        print("timeAction")
+        controllerView.updateSubView(false)
+        controllerShowed = false
+    }
+    
+    func stopIntervel(){
+        timer.invalidate()
+    }
 }

@@ -14,6 +14,9 @@ struct EpgDetailInfo {
     var endTime: Int = 0
     var label: String = ""
     
+    init() {
+        
+    }
     
     init(_ jsonData: JSON) {
         channelId = jsonData["channelId"].stringValue

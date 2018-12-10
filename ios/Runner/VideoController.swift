@@ -22,6 +22,7 @@ class VideoController: UIView{
     var delegate: VideoControllerDelegate?
     var controlView: UIView!
     var btnClose: UIButton!
+    var laTitle: UILabel!
     var btnPlay: UIButton!
     var btnFulScreen: UIButton!
     var laPlayDuration: UILabel!
@@ -54,6 +55,7 @@ class VideoController: UIView{
             $0.edges.equalTo(self)
         }
         createCloseButton()
+        createTitle()
         createLoadingView()
         createPlayButton()
         createPlayDuration()
@@ -62,16 +64,29 @@ class VideoController: UIView{
         createProgressView()
     }
     
+    func updateSubView(_ isShow: Bool){
+        let alpha: CGFloat = isShow ? 1.0 : 0.0
+        btnClose.alpha = alpha
+        laTitle.alpha = alpha
+        btnPlay.alpha = alpha
+        btnFulScreen.alpha = alpha
+        laPlayDuration.alpha = alpha
+        laTotalDuration.alpha = alpha
+        progressBar.alpha = alpha
+        loadingView.alpha = alpha
+    }
+
+    
     func createCloseButton(){
         btnClose = UIButton.init()
         btnClose.setImage(UIImage(named: "back_30"), for: UIControlState.normal)
         btnClose.addTarget(self, action: #selector(close), for: UIControlEvents.touchUpInside)
         controlView.addSubview(btnClose)
         btnClose.snp.makeConstraints {
-            $0.top.equalTo(controlView).offset(30)
-            $0.left.equalTo(controlView).offset(15)
-            $0.width.equalTo(30)
-            $0.height.equalTo(30)
+            $0.top.equalTo(controlView).offset(15)
+            $0.left.equalTo(controlView)
+            $0.width.equalTo(60)
+            $0.height.equalTo(60)
         }
     }
     
@@ -79,6 +94,23 @@ class VideoController: UIView{
         if let delega = self.delegate{
             delega.close();
         }
+    }
+    
+    func createTitle(){
+        laTitle = UILabel.init()
+        laTitle.numberOfLines = 1
+        laTitle.font = UIFont.boldSystemFont(ofSize: 16)
+        laTitle.textColor = UIColor.white
+        controlView.addSubview(laTitle)
+        laTitle.snp.makeConstraints {
+            $0.top.equalTo(controlView).offset(30)
+            $0.left.equalTo(btnClose.snp.right).offset(5)
+            $0.height.equalTo(30)
+        }
+    }
+    
+    func setTitle(_ title: String){
+        laTitle.text = title
     }
     
     func createLoadingView(){
@@ -182,7 +214,6 @@ class VideoController: UIView{
             $0.height.equalTo(25)
         }
     }
-    
     
     
     func createProgressView(){

@@ -8,6 +8,7 @@ import 'page_sports_games.dart';
 import 'package:dio/dio.dart';
 import 'package:wi_ogsusu/constant.dart';
 import 'package:wi_ogsusu/sql/sprots_event_dao.dart';
+import 'page_recommend_sports.dart';
 
 
 class SportsPage extends StatefulWidget{
@@ -22,6 +23,7 @@ class _SportsPageState extends State<SportsPage> with SingleTickerProviderStateM
   List<SportEventInfo> _sportEventList = [];
 
   List<SportEventInfo> _tabs = <SportEventInfo>[
+    new SportEventInfo(0, 0, 'Recommend', '', 'res/img/icon_nba_64.png', '', 0, 0, 0, 0),
     new SportEventInfo(1, 0, 'NBA', '', 'res/img/icon_nba_64.png', '', 0, 0, 0, 0),
     new SportEventInfo(2, 0, 'NFL', '', 'res/img/icon_nfl_64.png', '', 0, 0, 0, 0),
     new SportEventInfo(3, 0, 'NHL', '', 'res/img/icon_nhl_64.png', '', 0, 0, 0, 0),
@@ -36,15 +38,21 @@ class _SportsPageState extends State<SportsPage> with SingleTickerProviderStateM
     new SportEventInfo(12, 0, 'GOLF', '', 'res/img/icon_golf_64.png', '', 0, 0, 0, 0),
   ];
 
-  List<SportsGamesPage> sportTabPages() {
-    return _tabs.map((SportEventInfo sportEventInfo) {
-      return new SportsGamesPage(sportEventInfo);
-    }).toList();
-  }
+  List<Widget> _tabPages = [];
 
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   TabController _tabController;
   SportEventInfo _selectedTab;
+
+  void initTabPages(){
+    _tabPages = _tabs.map((SportEventInfo sportEventInfo) {
+      if(sportEventInfo.id == 0){
+        return RecommendSportsPage();
+      }else {
+        return new SportsGamesPage(sportEventInfo);
+      }
+    }).toList();
+  }
 
 
   Future<void> _getSportsEventsData() async{
@@ -96,6 +104,7 @@ class _SportsPageState extends State<SportsPage> with SingleTickerProviderStateM
   void initState() {
     super.initState();
     print("sports init");
+    initTabPages();
     _insertEventsDataToDB();
     _getEventsDataFromDB();
 //    _getSportsEventsData();
@@ -195,7 +204,7 @@ class _SportsPageState extends State<SportsPage> with SingleTickerProviderStateM
         Expanded(
           child: new TabBarView(
             controller: _tabController,
-            children: sportTabPages(),
+            children: _tabPages,
           ),
         )
       ],

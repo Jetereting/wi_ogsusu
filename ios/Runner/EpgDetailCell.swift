@@ -32,7 +32,7 @@ class EpgDetailCell: UITableViewCell{
         laLabel.text = epgDetailInfo.label
         laStart.text = TimeUtil.getTimeString(unixTime: epgDetailInfo.startTime, format: "hh:mm a")
         laEnd.text = TimeUtil.getTimeString(unixTime: epgDetailInfo.endTime, format: "hh:mm a")
-        if TimeUtil.getUnixTimestamp() > epgDetailInfo.startTime &&  TimeUtil.getUnixTimestamp() <= epgDetailInfo.endTime{
+        if TimeUtil.getUnixTimestamp() >= epgDetailInfo.startTime &&  TimeUtil.getUnixTimestamp() <= epgDetailInfo.endTime{
             laLabel.textColor = UIColor.green
         }
         

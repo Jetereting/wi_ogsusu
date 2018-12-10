@@ -10,6 +10,8 @@ import 'package:wi_ogsusu/common/utils/time_util.dart';
 import 'package:wi_ogsusu/entities/sport_event_info.dart';
 import 'package:wi_ogsusu/page/sports/page_sports_games_detail.dart';
 import 'package:wi_ogsusu/widget/page_loading_list8.dart';
+import 'package:wi_ogsusu/common/http_master.dart';
+
 
 // ignore: must_be_immutable
 class SportsGamesPage extends StatefulWidget{
@@ -30,6 +32,7 @@ class _SportsGamesPageState extends State<SportsGamesPage> with AutomaticKeepAli
   SportEventInfo _sportEventInfo;
   bool _loading = false;
   List<SportGameInfo> sportGamesList = [];
+  List<SportGameInfo> currentSportGamesList = [];
   Dio dio = new Dio();
   bool loadable = true;
 
@@ -47,41 +50,38 @@ class _SportsGamesPageState extends State<SportsGamesPage> with AutomaticKeepAli
       _loading = true;
     });
     String url = Constant.URL_SPORTS_GAMES + _sportEventInfo.id.toString();
-    Response response = await dio.get(url).catchError((DioError e){
-      print("DioError: " + e.toString());
+    HttpMaster.instance.get(url).then((result) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _loading = false;
+      });
+      int code = result.code;
+      if (code != 200) {
+        print(result.msg);
+        return;
+      }
+      setState(() {
+        List dataList = result.data;
+        _loading = false;
+        sportGamesList = dataList.map((dataStr) {
+          return new SportGameInfo.fromJson(dataStr);
+        }).toList();
+        currentSportGamesList = sportGamesList;
+      });
     });
-    int code = response.data['code'];
-    if(code == 200) {
-      List dataList = response.data['data'];
-      if(mounted) {
-        setState(() {
-          _loading = false;
-          sportGamesList = dataList.map((dataStr) {
-            return new SportGameInfo.fromJson(dataStr);
-          }).toList();
-        });
-      }
-    }else{
-      print(response.data['msg']);
-      if(mounted) {
-        setState(() {
-          _loading = false;
-        });
-      }
-    }
   }
 
   @override
   void initState() {
     super.initState();
-    print(_sportEventInfo.label + " init");
     _getGamesData();
   }
 
   void _onItemClick(SportGameInfo sportGameInfo){
     if(loadable) {
-      Navigator.push(
-          context, new MaterialPageRoute(builder: (BuildContext context) {
+      Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context) {
         return new SportsGamesDetailPage(sportGameInfo);
       }));
     }
@@ -196,43 +196,90 @@ class _SportsGamesPageState extends State<SportsGamesPage> with AutomaticKeepAli
     dio.clear();
   }
 
+  void filterList(String key){
+    if(key == null || key.length <= 0 || key == '' || key == ' '){
+      setState(() {
+        currentSportGamesList = sportGamesList;
+      });
+    }
+    setState(() {
+      currentSportGamesList =
+        sportGamesList.where((sportGameInfo){
+          return sportGameInfo.homeTeam.toLowerCase().contains(key.toLowerCase()) ||
+              sportGameInfo.guestTeam.toLowerCase().contains(key.toLowerCase()) ;
+        }).toList();
+    });
+  }
+
+  Widget buildFilter(){
+    return Container(
+      padding: EdgeInsets.only(left: 8.0, right: 8.0, bottom: 3.0),
+      width: double.infinity,
+      height: 42.0,
+      child: new TextField(
+        style: new TextStyle(
+          color: Colors.black,
+          fontSize: 18.0,
+        ),
+        keyboardType: TextInputType.text,
+        decoration: new InputDecoration(
+          border: OutlineInputBorder(
+          ),
+          fillColor: Colors.pink,
+          contentPadding: EdgeInsets.all(8.0),
+          hintText: Translations.of(context).text('search'),
+          suffixIcon: Icon(Icons.search, color: Colors.grey, size: 24.0,),
+        ),
+        autofocus: false,
+        onChanged: (String str){
+          filterList(str);
+        },
+        onSubmitted: (String str){
+        },
+      ),
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return new Container(
-        alignment: Alignment.center,
-        child: _loading && sportGamesList.length <= 0 ?
-        LoadingList8Page() :
-          sportGamesList.length > 0 ?
-            new RefreshIndicator(
-                child: new ListView.builder(
-                  itemCount: sportGamesList.length * 2,
-                  itemBuilder: (BuildContext context, int index) {
-                    if(index.isOdd){
-                      return const Divider();
-                    }else {
-                      return buildSportGameItem(sportGamesList[index ~/ 2]);
-                    }
-                  },
+      alignment: Alignment.center,
+      child: _loading && currentSportGamesList.length <= 0 ?
+      LoadingList8Page() :
+      currentSportGamesList.length >= 0 ?
+        new RefreshIndicator(
+          child: new ListView.builder(
+            itemCount: currentSportGamesList.length * 2 + 1,
+            itemBuilder: (BuildContext context, int index) {
+              if(index == 0){
+                return buildFilter();
+              }
+              if(index.isEven){
+                return const Divider();
+              }else {
+                return buildSportGameItem(currentSportGamesList[index ~/ 2]);
+              }
+            },
+          ),
+          onRefresh: _getGamesData,
+        ): new Container(
+          alignment: Alignment.center,
+          child: new Column(
+            children: <Widget>[
+              SizedBox(height: 60.0,),
+              Image.asset('res/img/icon_sad_80.png', width: 40.0, height: 40.0,),
+              Text(
+                "No game yet!",
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 18.0,
                 ),
-                onRefresh: _getGamesData,
-            ): new Container(
-              alignment: Alignment.center,
-              child: new Column(
-                children: <Widget>[
-                  SizedBox(height: 60.0,),
-                  Image.asset('res/img/icon_sad_80.png', width: 40.0, height: 40.0,),
-                  Text(
-                    "No game yet!",
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 18.0,
-                    ),
-                  ),
-
-                ],
               ),
-            )
+
+            ],
+          ),
+        )
     );
   }
 
