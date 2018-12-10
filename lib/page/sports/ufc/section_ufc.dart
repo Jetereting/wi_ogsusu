@@ -17,6 +17,16 @@ class SectionUfc extends StatelessWidget{
 
   SectionUfc(this.ufcEventList, this.ufcNewsList, this.ufcFighterList);
 
+
+
+  _launchURL(url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   Widget createEvents(){
     return new Container(
       color: Colors.white,
@@ -124,8 +134,8 @@ class SectionUfc extends StatelessWidget{
               ),
             ],
           ),
-          SizedBox(height: 8.0,),
-          createEvents(),
+//          SizedBox(height: 8.0,),
+//          createEvents(),
           SizedBox(height: 8.0,),
           createNews(),
           SizedBox(height: 8.0,),
