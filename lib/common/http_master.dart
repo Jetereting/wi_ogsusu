@@ -99,6 +99,17 @@ class HttpMaster {
     }
   }
 
+  Future<Response> getResponse(String path, {data, Options options, CancelToken cancelToken}) async {
+    try {
+      Response response = await dio.get(path,
+          data: data, options: options, cancelToken: cancelToken);
+      return response;
+    } on DioError catch (e) {
+      String msg = this.formatErrorMessage(e.type);
+      return null;
+    }
+  }
+
   Future<Result> post(String path, {data, Options options, CancelToken cancelToken}) async {
     try {
       Response response = await dio.post(path,

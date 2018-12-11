@@ -6,10 +6,14 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:wi_ogsusu/locale/translations.dart';
 import 'page/page_splash.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 
 void main() {
 //  debugPaintSizeEnabled=true;
-  runApp(new MyApp());
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+    runApp(new MyApp());
+  });
 }
 
 class MyApp extends StatefulWidget {

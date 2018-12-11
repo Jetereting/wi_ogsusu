@@ -39,6 +39,10 @@
 		CD352FDC219870DA00597628 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD352FDB219870DA00597628 /* AVFoundation.framework */; };
 		CD352FDE219870E500597628 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD352FDD219870E500597628 /* CoreGraphics.framework */; };
 		CD352FE02198726500597628 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD352FDF2198726500597628 /* CoreMedia.framework */; };
+		CD35D49421BF57B6001D8625 /* VexPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD35D49321BF57B6001D8625 /* VexPlayerViewController.swift */; };
+		CD35D49721BF8682001D8625 /* BMCustomPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD35D49521BF8681001D8625 /* BMCustomPlayer.swift */; };
+		CD35D49821BF8682001D8625 /* BMPlayerCustomControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD35D49621BF8682001D8625 /* BMPlayerCustomControlView.swift */; };
+		CD35D49A21BF869C001D8625 /* VexViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD35D49921BF869C001D8625 /* VexViewController.swift */; };
 		CD5F3E1121AD3DA700E6377D /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5F3E1021AD3DA700E6377D /* PlayerViewController.swift */; };
 		CD74372721AE6F9E002A76BB /* EpgDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CD74372621AE6F9E002A76BB /* EpgDetailCell.xib */; };
 		CD74372921AE704A002A76BB /* EpgDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD74372821AE704A002A76BB /* EpgDetailCell.swift */; };
@@ -102,6 +106,10 @@
 		CD352FDD219870E500597628 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		CD352FDF2198726500597628 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		CD352FE12198726C00597628 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		CD35D49321BF57B6001D8625 /* VexPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VexPlayerViewController.swift; sourceTree = "<group>"; };
+		CD35D49521BF8681001D8625 /* BMCustomPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMCustomPlayer.swift; sourceTree = "<group>"; };
+		CD35D49621BF8682001D8625 /* BMPlayerCustomControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMPlayerCustomControlView.swift; sourceTree = "<group>"; };
+		CD35D49921BF869C001D8625 /* VexViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VexViewController.swift; sourceTree = "<group>"; };
 		CD5F3E1021AD3DA700E6377D /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		CD74372621AE6F9E002A76BB /* EpgDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EpgDetailCell.xib; sourceTree = "<group>"; };
 		CD74372821AE704A002A76BB /* EpgDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpgDetailCell.swift; sourceTree = "<group>"; };
@@ -196,6 +204,8 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				CD35D49521BF8681001D8625 /* BMCustomPlayer.swift */,
+				CD35D49621BF8682001D8625 /* BMPlayerCustomControlView.swift */,
 				CD18AF84219531CE007E1819 /* Runner.entitlements */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
@@ -220,6 +230,8 @@
 				CD74372821AE704A002A76BB /* EpgDetailCell.swift */,
 				CD74372A21AE7093002A76BB /* EpgDetailProvider.swift */,
 				CD74372C21AE70EE002A76BB /* EpgDetailInfo.swift */,
+				CD35D49321BF57B6001D8625 /* VexPlayerViewController.swift */,
+				CD35D49921BF869C001D8625 /* VexViewController.swift */,
 			);
 			path = Runner;
 			sourceTree = "<group>";
@@ -351,7 +363,7 @@
 				"${BUILT_PRODUCTS_DIR}/BMPlayer/BMPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
-				"${PODS_ROOT}/../.symlinks/flutter/ios/Flutter.framework",
+				"${PODS_ROOT}/../.symlinks/flutter/ios-release/Flutter.framework",
 				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
@@ -448,12 +460,16 @@
 				CD199894219010C700AFAE8A /* AESUtil.swift in Sources */,
 				CDF5E669219037FB00FEB7BE /* VideoController.swift in Sources */,
 				CD199896219010E000AFAE8A /* ChannelInfo.swift in Sources */,
+				CD35D49821BF8682001D8625 /* BMPlayerCustomControlView.swift in Sources */,
+				CD35D49421BF57B6001D8625 /* VexPlayerViewController.swift in Sources */,
 				74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */,
 				CD5F3E1121AD3DA700E6377D /* PlayerViewController.swift in Sources */,
+				CD35D49721BF8682001D8625 /* BMCustomPlayer.swift in Sources */,
 				CD74372921AE704A002A76BB /* EpgDetailCell.swift in Sources */,
 				CD19989A2190111B00AFAE8A /* VideoPlayerViewController.swift in Sources */,
 				CD74372D21AE70EE002A76BB /* EpgDetailInfo.swift in Sources */,
 				CD199898219010F900AFAE8A /* ChannelProvider.swift in Sources */,
+				CD35D49A21BF869C001D8625 /* VexViewController.swift in Sources */,
 				CD1998AC219021F900AFAE8A /* StringExtension.swift in Sources */,
 				CD74372B21AE7093002A76BB /* EpgDetailProvider.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,

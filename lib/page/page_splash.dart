@@ -19,7 +19,7 @@ class SplashState extends State<Splash>{
 
   Dio dio = new Dio();
 
-  Future<Null> verifyToken() async{
+  Future<Null> verifyOgsusuToken() async{
     int userId = await getSpInt(Constant.SP_KEY_USER_ID);
     String currentToken = await getSpString(Constant.SP_KEY_TOKEN);
     String url = Constant.URL_OGSUSU_TOKEN + userId.toString() + "/$currentToken";
@@ -33,12 +33,15 @@ class SplashState extends State<Splash>{
     if(code == 200) {
       print("$currentToken verify success");
       String validTime = response.data['data']['validTime'];
+      int level = response.data['data']['level'];
       setSpString(Constant.SP_KEY_VALID_TIME, validTime);
+      setSpInt(Constant.SP_KEY_LEVEL, level);
       print(validTime);
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => PageTab()),
               (route) => route == null);
     }else{
+      print("$currentToken verify failure");
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => PageLogin()),
               (route) => route == null);
@@ -53,7 +56,7 @@ class SplashState extends State<Splash>{
   @override
   void initState() {
     super.initState();
-    verifyToken();
+    verifyOgsusuToken();
   }
 
   @override

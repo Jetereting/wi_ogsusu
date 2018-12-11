@@ -19,3 +19,13 @@ setSpString(String key, String value) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   await prefs.setString(key, value);
 }
+
+Future<bool> getSpBool(String key) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  return prefs.getBool(key) ?? false;
+}
+
+setSpBool(String key, bool value) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.setBool(key, value);
+}

@@ -35,6 +35,7 @@ class _SportsGamesPageState extends State<SportsGamesPage> with AutomaticKeepAli
   List<SportGameInfo> currentSportGamesList = [];
   Dio dio = new Dio();
   bool loadable = true;
+  FocusNode focusNode = FocusNode();
 
 
   _SportsGamesPageState(SportEventInfo sportEventInfo){
@@ -80,6 +81,7 @@ class _SportsGamesPageState extends State<SportsGamesPage> with AutomaticKeepAli
   }
 
   void _onItemClick(SportGameInfo sportGameInfo){
+    focusNode.unfocus();
     if(loadable) {
       Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context) {
         return new SportsGamesDetailPage(sportGameInfo);
@@ -213,10 +215,11 @@ class _SportsGamesPageState extends State<SportsGamesPage> with AutomaticKeepAli
 
   Widget buildFilter(){
     return Container(
-      padding: EdgeInsets.only(left: 8.0, right: 8.0, bottom: 3.0),
+      padding: EdgeInsets.only(left: 8.0, right: 8.0, bottom: 3.0, top: 12.0),
       width: double.infinity,
       height: 42.0,
       child: new TextField(
+        focusNode: focusNode,
         style: new TextStyle(
           color: Colors.black,
           fontSize: 18.0,

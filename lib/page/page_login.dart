@@ -6,7 +6,9 @@ import 'package:wi_ogsusu/locale/translations.dart';
 import 'package:dio/dio.dart';
 import 'package:wi_ogsusu/constant.dart';
 import 'package:wi_ogsusu/widget/background_login.dart';
-import 'package:wi_ogsusu/page/page_web_view.dart';
+import 'page_sign_up.dart';
+import 'page_reset_password.dart';
+
 
 class PageLogin extends StatefulWidget{
 
@@ -20,9 +22,17 @@ class PageLoginState extends State<PageLogin>{
   String password = '';
   bool _loading = false;
 
+  Dio dio = new Dio();
+
   _signUp() async {
     Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
-      return new WebViewPage("http://www.golde.club");
+      return new PageSignUp();
+    }));
+  }
+
+  _forgetPassword() async {
+    Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
+      return new PageResetPassword();
     }));
   }
 
@@ -39,7 +49,6 @@ class PageLoginState extends State<PageLogin>{
       _loading = true;
     });
     try {
-      Dio dio = new Dio();
       Response response = await dio.post(Constant.URL_USER_LOGIN, data: {
         "username": username,
         "password": password,
@@ -75,10 +84,12 @@ class PageLoginState extends State<PageLogin>{
       _loading = true;
     });
     try {
-      Dio dio = new Dio();
-      Response response = await dio.post(Constant.URL_OGSUSU_USER + userId.toString())
+      Response response = await dio.post(Constant.URL_OGSUSU_USER_VERIFY + userId.toString())
           .catchError((DioError e) {
             print("DioError: " + e.toString());
+      });
+      setState(() {
+        _loading = false;
       });
       int code = response.data['code'];
       if (code == 200) {
@@ -90,14 +101,20 @@ class PageLoginState extends State<PageLogin>{
           Navigator.of(context).pushNamed('/tab');
         });
       } else {
-        setState(() {
-          _loading = false;
-        });
         showError(context, response.data['msg']);
       }
     }catch (exception){
+      setState(() {
+        _loading = false;
+      });
       showError(context, 'network connect fail, try again later');
     }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    dio.clear();
   }
 
   @override
@@ -223,20 +240,22 @@ class PageLoginState extends State<PageLogin>{
       ),
     );
 
-    Widget btSignUp = new Container(
-      margin: new EdgeInsets.only(top: 5.0),
-      width: double.infinity,
-      child: new ButtonBar(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          new FlatButton(
-            child: Text(Translations.of(context).text('signup')),
-            onPressed: () {
-              _signUp();
-            },
-          ),
-        ],
-      ),
+    Widget sectionBottom = new Row(
+      children: <Widget>[
+        new FlatButton(
+          child: Text(Translations.of(context).text('signup')),
+          onPressed: () {
+            _signUp();
+          },
+        ),
+        Expanded(child: Container(),),
+        new FlatButton(
+          child: Text(Translations.of(context).text('forgot_password')),
+          onPressed: () {
+            _forgetPassword();
+          },
+        ),
+      ],
     );
 
     return new Scaffold(
@@ -249,7 +268,7 @@ class PageLoginState extends State<PageLogin>{
             child: new Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                SizedBox(height: 165.0,),
+                SizedBox(height: 170.0,),
                 Card(
                   elevation: 6.0,
                   margin: EdgeInsets.all(24.0),
@@ -259,8 +278,9 @@ class PageLoginState extends State<PageLogin>{
                         tfUsername,
                         tfPassword,
                         _loading ? loading : btLogin,
+                        SizedBox(height: 8.0,),
+                        sectionBottom,
                         SizedBox(height: 20.0,),
-                        btSignUp,
                       ],
                     ),
                   ),

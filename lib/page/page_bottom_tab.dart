@@ -26,13 +26,7 @@ class _PageTabState extends State<PageTab> with SingleTickerProviderStateMixin {
     initialPage: 0,
   );
 
-  List<Widget> _pageList = [
-    HomePage(),
-    SportsPage(),
-    MediaPage(),
-    MallPage(),
-    MyPage(),
-  ];
+  List<Widget> _pageList = [];
 
   getCheckInDetailData() async{
     int userId = await getSpInt(Constant.SP_KEY_USER_ID);
@@ -56,11 +50,24 @@ class _PageTabState extends State<PageTab> with SingleTickerProviderStateMixin {
         });
   }
 
+  initPageList(){
+    _pageList.add(HomePage());
+    getSpBool(Constant.SP_KEY_SPORTS_ACTIVATED).then((load){
+      _pageList.add(SportsPage(load));
+      getSpBool(Constant.SP_KEY_MEDIA_ACTIVATED).then((load){
+        _pageList.add(MediaPage(load));
+
+        _pageList.add(MallPage());
+        _pageList.add(MyPage());
+      });
+    });
+  }
 
 
   @override
   void initState() {
     super.initState();
+    initPageList();
     getCheckInDetailData();
   }
 

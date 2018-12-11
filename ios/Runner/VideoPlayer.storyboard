@@ -64,7 +64,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RGH-19-TSM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-23.199999999999999" y="-230.73463268365819"/>
+            <point key="canvasLocation" x="-82" y="-363"/>
         </scene>
         <!--Player View Controller-->
         <scene sceneID="e7o-cQ-ym2">
@@ -128,39 +128,91 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rY5-Ic-aJm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="804" y="-238.83058470764618"/>
+            <point key="canvasLocation" x="710" y="-363"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="wtO-KR-qlk">
+        <!--Vex View Controller-->
+        <scene sceneID="Ed6-Js-Sfs">
             <objects>
-                <viewController id="H5W-P0-uTf" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="9ii-GX-5WD">
+                <viewController storyboardIdentifier="VexViewController" id="U0E-ac-6RC" customClass="VexViewController" customModule="Runner" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="awJ-SS-0CC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EIj-Js-gFY">
-                                <rect key="frame" x="157.5" y="303.5" width="60" height="60"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RNj-4A-1UA" customClass="BMCustomPlayer" customModule="Runner" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="4DO-PW-RW6"/>
-                                    <constraint firstAttribute="width" constant="60" id="IhJ-wc-0ww"/>
+                                    <constraint firstAttribute="width" secondItem="RNj-4A-1UA" secondAttribute="height" multiplier="16:9" id="vs5-YW-J8g"/>
                                 </constraints>
-                                <state key="normal" image="back_30"/>
-                            </button>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="EIj-Js-gFY" firstAttribute="centerX" secondItem="9ii-GX-5WD" secondAttribute="centerX" id="M1n-ft-19j"/>
-                            <constraint firstItem="EIj-Js-gFY" firstAttribute="centerY" secondItem="9ii-GX-5WD" secondAttribute="centerY" id="M5O-W7-wX9"/>
+                            <constraint firstItem="RNj-4A-1UA" firstAttribute="leading" secondItem="wKN-4p-u6d" secondAttribute="leading" id="RUn-OP-XcQ"/>
+                            <constraint firstItem="RNj-4A-1UA" firstAttribute="top" secondItem="awJ-SS-0CC" secondAttribute="top" id="RkX-nP-97F"/>
+                            <constraint firstItem="RNj-4A-1UA" firstAttribute="trailing" secondItem="wKN-4p-u6d" secondAttribute="trailing" id="hbt-Fq-SUS"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="ylH-eM-CLb"/>
+                        <viewLayoutGuide key="safeArea" id="wKN-4p-u6d"/>
                     </view>
+                    <connections>
+                        <outlet property="player" destination="RNj-4A-1UA" id="M5f-nn-BWA"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2f6-g6-hOh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gkG-nC-7Sf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1963" y="-330"/>
+            <point key="canvasLocation" x="709.60000000000002" y="366.56671664167919"/>
+        </scene>
+        <!--Vex Player View Controller-->
+        <scene sceneID="aqq-R7-ZEo">
+            <objects>
+                <viewController storyboardIdentifier="VexPlayerViewController" id="EpS-pA-HUM" customClass="VexPlayerViewController" customModule="Runner" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RIf-XT-O4z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hkn-wr-d9e">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BI9-h5-4SE">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lhG-Tq-dpl" customClass="VideoController" customModule="Runner" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="211"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="BI9-h5-4SE" secondAttribute="bottom" id="LtL-Cu-9ex"/>
+                                    <constraint firstItem="lhG-Tq-dpl" firstAttribute="leading" secondItem="hkn-wr-d9e" secondAttribute="leading" id="TgQ-9w-xzt"/>
+                                    <constraint firstAttribute="bottom" secondItem="lhG-Tq-dpl" secondAttribute="bottom" id="bZ7-i7-edQ"/>
+                                    <constraint firstItem="lhG-Tq-dpl" firstAttribute="top" secondItem="hkn-wr-d9e" secondAttribute="top" id="ev3-82-FG7"/>
+                                    <constraint firstItem="BI9-h5-4SE" firstAttribute="leading" secondItem="hkn-wr-d9e" secondAttribute="leading" id="fGi-vf-U6E"/>
+                                    <constraint firstAttribute="trailing" secondItem="BI9-h5-4SE" secondAttribute="trailing" id="lH5-o4-1tY"/>
+                                    <constraint firstAttribute="width" secondItem="hkn-wr-d9e" secondAttribute="height" multiplier="16:9" id="uPw-GG-8M2"/>
+                                    <constraint firstAttribute="trailing" secondItem="lhG-Tq-dpl" secondAttribute="trailing" id="uWg-9T-7Sg"/>
+                                    <constraint firstItem="BI9-h5-4SE" firstAttribute="top" secondItem="hkn-wr-d9e" secondAttribute="top" id="yxE-7J-JIj"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hkn-wr-d9e" firstAttribute="trailing" secondItem="94V-S5-TEL" secondAttribute="trailing" id="E5F-Pa-bbQ"/>
+                            <constraint firstItem="hkn-wr-d9e" firstAttribute="top" secondItem="RIf-XT-O4z" secondAttribute="top" id="QDQ-Dj-EdK"/>
+                            <constraint firstItem="hkn-wr-d9e" firstAttribute="leading" secondItem="94V-S5-TEL" secondAttribute="leading" id="zsV-FI-kWj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="94V-S5-TEL"/>
+                    </view>
+                    <connections>
+                        <outlet property="contentView" destination="hkn-wr-d9e" id="ClD-Dk-tPz"/>
+                        <outlet property="controllerView" destination="lhG-Tq-dpl" id="5fg-aa-FVc"/>
+                        <outlet property="playView" destination="BI9-h5-4SE" id="bxm-HD-bHm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FhN-lC-7yc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-82" y="367"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="back_30" width="30" height="30"/>
-    </resources>
 </document>

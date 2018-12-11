@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 class Constant{
 
   static const URL_OGSUSU = "http://ogsusu.vipnow.work/";
-  static const URL_OGSUSU_USER = URL_OGSUSU + "user/verify/";
+  static const URL_OGSUSU_USER_REGISTER = URL_OGSUSU + "user/register";
+  static const URL_OGSUSU_USER_VERIFY = URL_OGSUSU + "user/verify/";
   static const URL_OGSUSU_TOKEN = URL_OGSUSU + "token/verify/";
 
 
   static const URL_CUSTOMER = "http://customer.vipnow.work/";
+  static const URL_USER_SIGN_UP = URL_CUSTOMER + "signup";
   static const URL_USER_LOGIN = URL_CUSTOMER + "login";
+  static const URL_USER_RESET_PASSWORD = URL_CUSTOMER + "reset";
   static const URL_USER_TOKEN_VERIFY = URL_CUSTOMER + "token/verify/";
   static const URL_POPULAR_EVENTS = URL_CUSTOMER + "events";
   static const URL_CHECK_IN = URL_CUSTOMER + "checkin";
@@ -25,6 +28,9 @@ class Constant{
   static const URL_MOVIE_DETAIL = URL_EXTENSION + "movie/";
   static const URL_NEWS = URL_EXTENSION + "news";
   static const URL_NEWS_DETAIL = URL_EXTENSION + "news/";
+  static const URL_VEX_MOVIES_GENRES = URL_EXTENSION + "vex/genres";
+  static const URL_VEX_MOVIES = URL_EXTENSION + "vex/movies";
+  static const URL_VEX_MOVIE_PLAY_URL = "http://apimovies.protv.company/v1/moviesvex/get_movies_play.do?token=e4393385ee8711474dd9b63849de5cef&url=";
 
   static const URL_CHANNEL = "http://channel.vipnow.work:10220/channel/d/";
 
@@ -45,10 +51,13 @@ class Constant{
   static const SP_KEY_USER_ID = "userId";
   static const SP_KEY_USERNAME = "username";
   static const SP_KEY_REP_CODE = "repCode";
+  static const SP_KEY_LEVEL = "level";
   static const SP_KEY_VALID_TIME = "validTime";
   static const SP_KEY_TOKEN = "token";
   static const SP_KEY_STREAM_TOKEN = "streamToken";
   static const SP_KEY_LANGUAGE = "language";
+  static const SP_KEY_SPORTS_ACTIVATED = "sports_activated";
+  static const SP_KEY_MEDIA_ACTIVATED = "media_activated";
 
 
   static const PARAM_TYPE = 1;
@@ -57,6 +66,7 @@ class Constant{
 
 
   static const MOVIES = "MOVIES";
+  static const MOVIES_PLUS = "MOVIES_PLUS";
   static const LIVETV = "LIVETV";
   static const TV = "TV";
 

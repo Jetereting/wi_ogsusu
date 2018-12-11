@@ -21,6 +21,7 @@ class S implements WidgetsLocalizations {
   String get EUROPE => "EUROPE";
   String get LIVETV => "TV GUIDE";
   String get MOVIES => "MOVIE GUIDE";
+  String get MOVIES_PLUS => "MOVIES+";
   String get RepCode => "RepCode: ";
   String get TV => "TV";
   String get USA => "USA";
@@ -32,10 +33,14 @@ class S implements WidgetsLocalizations {
   String get check_in => "Check In";
   String get checked => "Checked";
   String get coins => "Coins";
+  String get confirm => "Confirm";
   String get continuous_check_in_days => "ContinuousCheckInDays: ";
   String get credit_card => "Credit Card";
+  String get email => "email";
+  String get feature_activate => "Feature Activate";
   String get fight => "fight";
   String get football => "Football";
+  String get forgot_password => "forgot password?";
   String get golf => "Golf";
   String get home => "Home";
   String get login => "Login";
@@ -46,10 +51,12 @@ class S implements WidgetsLocalizations {
   String get more => "More";
   String get my => "My";
   String get password => "password";
+  String get phone => "phone";
   String get play_list => "Play List";
   String get points => "POINTS: ";
   String get popular_events => "Popular events: ";
   String get presents_for_attendance => "PRESENTS FOR ATTENDANCE";
+  String get reset_password => "Reset Password";
   String get search => "Search";
   String get signup => "SignUp";
   String get sports => "Sports";
@@ -95,6 +102,8 @@ class zh extends S {
   @override
   String get monthly_check_in_days => "本月签到: ";
   @override
+  String get feature_activate => "功能激活";
+  @override
   String get checked => "已签到";
   @override
   String get play_list => "播放列表";
@@ -103,7 +112,11 @@ class zh extends S {
   @override
   String get vip => "会员";
   @override
+  String get email => "邮箱";
+  @override
   String get fight => "搏击";
+  @override
+  String get MOVIES_PLUS => "电影+";
   @override
   String get USA => "美国";
   @override
@@ -129,6 +142,8 @@ class zh extends S {
   @override
   String get home => "主页";
   @override
+  String get confirm => "确认";
+  @override
   String get EUROPE => "欧洲";
   @override
   String get credit_card => "信用卡";
@@ -137,6 +152,10 @@ class zh extends S {
   @override
   String get LIVETV => "电视";
   @override
+  String get phone => "手机";
+  @override
+  String get reset_password => "重置密码";
+  @override
   String get boxing => "拳击";
   @override
   String get presents_for_attendance => "签到有礼";
@@ -144,6 +163,8 @@ class zh extends S {
   String get baseball => "棒球";
   @override
   String get username => "用户名";
+  @override
+  String get forgot_password => "忘记密码?";
 }
 
 class GeneratedLocalizationsDelegate extends LocalizationsDelegate<S> {

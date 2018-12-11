@@ -7,8 +7,13 @@
   "my": "My",
   "username": "username",
   "password": "password",
+  "phone": "phone",
+  "email": "email",
   "login": "Login",
   "signup": "SignUp",
+  "forgot_password": "forgot password?",
+  "reset_password": "Reset Password",
+  "confirm": "Confirm",
   "logout": "Logout",
   "search": "Search",
   "basketball": "Basketball",
@@ -22,6 +27,7 @@
   "EUROPE": "EUROPE",
   "MOVIES": "MOVIE GUIDE",
   "LIVETV": "TV GUIDE",
+  "MOVIES_PLUS": "MOVIES+",
   "TV": "TV",
   "more": "More",
   "check_in": "Check In",
@@ -36,5 +42,6 @@
   "presents_for_attendance": "PRESENTS FOR ATTENDANCE",
   "monthly_check_in_days": "MonthlyCheckInDays: ",
   "continuous_check_in_days": "ContinuousCheckInDays: ",
+  "feature_activate": "Feature Activate",
   "play_list": "Play List"
 }

@@ -25,6 +25,24 @@ import Flutter
                 result(FlutterMethodNotImplemented)
             }
         });
+        
+        
+        let vexPlayerChannel = FlutterMethodChannel.init(name: "com.wiatec.ogsusu.vex.player",
+                                                          binaryMessenger: controller);
+        vexPlayerChannel.setMethodCallHandler({
+            (call: FlutterMethodCall, result: FlutterResult) -> Void in
+            let method: String = call.method
+            if (method.starts(with: "startVexPlayer")) {
+                let params = method.components(separatedBy: "%%")
+                let url = params[1]
+                let label = params[2]
+                self.launchVexPlayerController(controller, url: url, label: label)
+                result("success")
+            }else {
+                result(FlutterMethodNotImplemented)
+            }
+        });
+        
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
@@ -35,6 +53,16 @@ import Flutter
 //        let videoController = board.instantiateViewController(withIdentifier: "PlayerViewController") as! PlayerViewController
         videoController.channelId = channelId
         videoController.token = token
+        controller.present(videoController, animated: false, completion: nil)
+    }
+    
+    
+    private func launchVexPlayerController(_ controller: UIViewController, url: String, label: String) {
+        let board: UIStoryboard = UIStoryboard(name: "VideoPlayer", bundle: nil)
+//        let videoController = board.instantiateViewController(withIdentifier: "VexPlayerViewController") as! VexPlayerViewController
+        let videoController = board.instantiateViewController(withIdentifier: "VexViewController") as! VexViewController
+        videoController.url = url
+        videoController.label = label
         controller.present(videoController, animated: false, completion: nil)
     }
 }

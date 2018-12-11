@@ -7,8 +7,13 @@
   "my": "我的",
   "username": "用户名",
   "password": "密码",
+  "phone": "手机",
+  "email": "邮箱",
   "login": "登录",
   "signup": "注册",
+  "forgot_password": "忘记密码?",
+  "reset_password": "重置密码",
+  "confirm": "确认",
   "logout": "退出",
   "search": "查找",
   "basketball": "篮球",
@@ -22,6 +27,7 @@
   "EUROPE": "欧洲",
   "MOVIES": "电影",
   "LIVETV": "电视",
+  "MOVIES_PLUS": "电影+",
   "TV": "TV",
   "more": "详情",
   "check_in": "签到",
@@ -36,5 +42,6 @@
   "presents_for_attendance": "签到有礼",
   "monthly_check_in_days": "本月签到: ",
   "continuous_check_in_days": "连续签到: ",
+  "feature_activate": "功能激活",
   "play_list": "播放列表"
 }

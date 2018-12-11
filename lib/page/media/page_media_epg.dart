@@ -28,6 +28,7 @@ class _MediaEpgPageState extends State<MediaEpgPage> with AutomaticKeepAliveClie
   List<EpgInfo> currentEpgList = [];
 
   bool _loadable = true;
+  FocusNode focusNode = FocusNode();
 
   @override
   bool get wantKeepAlive => true;
@@ -77,6 +78,7 @@ class _MediaEpgPageState extends State<MediaEpgPage> with AutomaticKeepAliveClie
 
 
   void itemClick(EpgInfo epgInfo){
+    focusNode.unfocus();
     print(epgInfo.label);
     getStreamToken().then((token){
       String method = 'startPlayActivity%%' + epgInfo.channelId + "%%" + token;
@@ -202,10 +204,11 @@ class _MediaEpgPageState extends State<MediaEpgPage> with AutomaticKeepAliveClie
 
   Widget buildFilter(){
     return Container(
-      padding: EdgeInsets.only(left: 8.0, right: 8.0, bottom: 3.0),
+      padding: EdgeInsets.only(left: 8.0, right: 8.0, bottom: 3.0, top: 12.0),
       width: double.infinity,
-      height: 45.0,
+      height: 60.0,
       child: new TextField(
+        focusNode: focusNode,
         style: new TextStyle(
           color: Colors.black,
           fontSize: 18.0,
@@ -225,6 +228,9 @@ class _MediaEpgPageState extends State<MediaEpgPage> with AutomaticKeepAliveClie
           filterEpgList(str);
         },
         onSubmitted: (String str){
+        },
+        onTap: (){
+          FocusScope.of(context).requestFocus(focusNode);
         },
       ),
     );
