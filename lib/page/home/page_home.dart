@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             controller: _tabController,
             isScrollable: true,
             indicatorColor: Colors.transparent,
-            labelColor: Colors.deepOrange,
+            labelColor: Colors.white,
             unselectedLabelColor: Colors.white54,
             tabs: _categories.map((String category) {
               return new Tab(
