@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
-import 'package:device_info/device_info.dart';
-import 'package:wi_ogsusu/extension/token_master.dart';
 
 class Video extends StatefulWidget{
 

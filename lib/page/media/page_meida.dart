@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wi_ogsusu/navigator.dart';
 import 'package:wi_ogsusu/common/utils/sp_util.dart';
-import 'package:fluro/fluro.dart';
 import 'package:wi_ogsusu/locale/translations.dart';
 import 'page_media_epg.dart';
 import 'page_media_movie.dart';
@@ -9,7 +7,6 @@ import 'package:wi_ogsusu/constant.dart';
 import 'package:wi_ogsusu/extension/token_master.dart';
 import 'package:wi_ogsusu/common/utils/modal_util.dart';
 import 'package:wi_ogsusu/page/page_feature_activate.dart';
-import 'page_local_media.dart';
 import 'page_media_vex_movie.dart';
 
 

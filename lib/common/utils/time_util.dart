@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/date_time_patterns.dart';
-import 'package:intl/date_symbol_data_local.dart';
-import 'package:intl/date_symbols.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 class TimeUtil{
 
@@ -37,7 +33,7 @@ class TimeUtil{
     return format.format(dateTime);
   }
 
-  /** 返回两个日期相差的天数 */
+  /// 返回两个日期相差的天数
   static int daysBetween(DateTime a, DateTime b, [bool ignoreTime = false]) {
     if (ignoreTime) {
       int v = a.millisecondsSinceEpoch ~/ 86400000 -

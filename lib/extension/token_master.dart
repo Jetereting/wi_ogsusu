@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:wi_ogsusu/common/utils/sp_util.dart';
 import 'package:wi_ogsusu/common/utils/time_util.dart';
 import 'package:wi_ogsusu/common/utils/crypto_util.dart';

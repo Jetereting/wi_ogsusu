@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'epg_detail_info.dart';
 part 'channel_info.g.dart';
 
 @JsonSerializable()

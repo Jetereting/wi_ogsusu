@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class Constant{
 
   static const URL_OGSUSU = "http://ogsusu.vipnow.work/";

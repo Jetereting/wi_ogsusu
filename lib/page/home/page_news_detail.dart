@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:wi_ogsusu/constant.dart';
-import 'package:wi_ogsusu/common/utils/modal_util.dart';
 import 'package:wi_ogsusu/entities/news_info.dart';
 import 'package:wi_ogsusu/entities/news_detail_info.dart';
 import 'package:wi_ogsusu/widget/page_loading_list7.dart';

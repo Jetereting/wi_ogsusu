@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:wi_ogsusu/navigator.dart';
-import 'package:wi_ogsusu/common/utils/sp_util.dart';
-import 'package:fluro/fluro.dart';
 import 'package:wi_ogsusu/locale/translations.dart';
 import 'package:dio/dio.dart';
 import 'package:wi_ogsusu/entities/product_info.dart';
 import 'package:wi_ogsusu/entities/product_sku_info.dart';
 import 'package:wi_ogsusu/constant.dart';
-import 'package:wi_ogsusu/page/mall/page_mall_product_detail.dart';
 import 'package:wi_ogsusu/widget/page_loading_list8.dart';
-import 'package:wi_ogsusu/page/page_web_view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 

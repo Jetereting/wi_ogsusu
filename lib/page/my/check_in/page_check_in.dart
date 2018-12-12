@@ -6,8 +6,6 @@ import 'package:wi_ogsusu/constant.dart';
 import 'package:dio/dio.dart';
 import 'package:wi_ogsusu/common/utils/sp_util.dart';
 import 'package:wi_ogsusu/entities/check_in_info.dart';
-import 'package:wi_ogsusu/entities/user_points_detail_info.dart';
-import 'package:wi_ogsusu/entities/check_in_detail_info.dart';
 import 'package:wi_ogsusu/common/utils/time_util.dart';
 import 'package:wi_ogsusu/widget/page_loading_list7.dart';
 import 'package:wi_ogsusu/locale/translations.dart';

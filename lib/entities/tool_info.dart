@@ -1,6 +1,3 @@
-import 'package:json_annotation/json_annotation.dart';
-import 'epg_detail_info.dart';
-
 class ToolInfo extends Object{
 
   String label;

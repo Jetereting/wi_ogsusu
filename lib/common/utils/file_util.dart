@@ -1,8 +1,7 @@
 class FileUtil{
 
-
   static const RollupSize_Units = ["GB", "MB", "KB", "B"];
-  /** 返回文件大小字符串 */
+
   static String getRollupSize(int size) {
     int idx = 3;
     int r1 = 0;

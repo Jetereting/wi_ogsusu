@@ -106,6 +106,7 @@ class HttpMaster {
       return response;
     } on DioError catch (e) {
       String msg = this.formatErrorMessage(e.type);
+      print(msg);
       return null;
     }
   }

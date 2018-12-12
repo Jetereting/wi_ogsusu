@@ -1,17 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:wi_ogsusu/navigator.dart';
-import 'package:wi_ogsusu/common/utils/sp_util.dart';
-import 'package:fluro/fluro.dart';
-import 'package:wi_ogsusu/locale/translations.dart';
 import 'package:dio/dio.dart';
 import 'package:wi_ogsusu/constant.dart';
-import 'package:wi_ogsusu/entities/epg_info.dart';
-import 'package:wi_ogsusu/entities/epg_detail_info.dart';
-import 'package:wi_ogsusu/common/utils/time_util.dart';
-import 'package:wi_ogsusu/locale/translations.dart';
 import 'package:wi_ogsusu/entities/channel_info.dart';
 import 'dart:async';
-import 'package:wi_ogsusu/widget/video.dart';
 import 'package:wi_ogsusu/extension/token_master.dart';
 import 'package:wi_ogsusu/entities/sport_game_channel_info.dart';
 import 'package:chewie/chewie.dart';

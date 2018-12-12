@@ -1,9 +1,6 @@
 import 'package:dio/dio.dart';
 
 
-
-
-
 class UfcProvider{
 
   Dio dio = Dio();

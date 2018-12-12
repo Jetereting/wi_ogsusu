@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'sport_game_info.dart';
 part 'epg_detail_info.g.dart';
 
 @JsonSerializable()

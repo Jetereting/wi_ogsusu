@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:wi_ogsusu/entities/product_sku_info.dart';
 import 'dart:convert';

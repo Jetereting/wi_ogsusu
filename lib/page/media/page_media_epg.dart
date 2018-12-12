@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wi_ogsusu/navigator.dart';
-import 'package:wi_ogsusu/common/utils/sp_util.dart';
-import 'package:fluro/fluro.dart';
 import 'package:wi_ogsusu/locale/translations.dart';
-import 'package:dio/dio.dart';
 import 'package:wi_ogsusu/constant.dart';
 import 'package:wi_ogsusu/entities/epg_info.dart';
 import 'page_media_epg_detail.dart';

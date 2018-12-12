@@ -1,20 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:wi_ogsusu/navigator.dart';
-import 'package:wi_ogsusu/common/utils/sp_util.dart';
-import 'package:fluro/fluro.dart';
 import 'package:wi_ogsusu/locale/translations.dart';
 import 'package:dio/dio.dart';
 import 'package:wi_ogsusu/constant.dart';
 import 'package:wi_ogsusu/entities/sport_game_info.dart';
-import 'package:wi_ogsusu/common/utils/time_util.dart';
-import 'package:wi_ogsusu/entities/sport_event_info.dart';
 import 'package:wi_ogsusu/entities/sport_game_channel_info.dart';
-import 'package:wi_ogsusu/locale/translations.dart';
 import 'package:wi_ogsusu/extension/token_master.dart';
 import 'package:wi_ogsusu/common/utils/device_util.dart';
 import 'package:flutter/services.dart';
 import 'page_sports_games_play.dart';
-import 'package:wi_ogsusu/extension/token_master.dart';
 
 // ignore: must_be_immutable
 class SportsGamesDetailPage extends StatefulWidget{
@@ -90,9 +83,7 @@ class _SportsGamesDetailPageState extends State<SportsGamesDetailPage> with Auto
 
   void itemClick(SportGameChannelInfo sportGameChannelInfo){
     getStreamToken().then((token){
-      print(token);
       String method = 'startPlayActivity%%' + sportGameChannelInfo.channelId + "%%" + token;
-      print(method);
       if(_loadable){
         if(DeviceUtil.isAndroid()){
           Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){

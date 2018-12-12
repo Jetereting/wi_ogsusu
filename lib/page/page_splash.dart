@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:wi_ogsusu/navigator.dart';
 import 'package:wi_ogsusu/common/utils/sp_util.dart';
 import 'dart:async';
 import 'package:dio/dio.dart';

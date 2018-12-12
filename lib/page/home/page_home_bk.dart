@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wi_ogsusu/navigator.dart';
 import 'package:wi_ogsusu/common/utils/sp_util.dart';
-import 'package:fluro/fluro.dart';
-import 'package:wi_ogsusu/locale/translations.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:transparent_image/transparent_image.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:wi_ogsusu/entities/news_info.dart';
 import 'package:wi_ogsusu/constant.dart';
@@ -13,7 +9,6 @@ import 'package:wi_ogsusu/page/page_web_view.dart';
 import 'package:dio/dio.dart';
 import 'package:wi_ogsusu/widget/page_loading_list9.dart';
 import 'page_news_detail.dart';
-import 'package:wi_ogsusu/common/utils/device_util.dart';
 import 'package:wi_ogsusu/entities/event_info.dart';
 
 

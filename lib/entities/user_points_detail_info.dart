@@ -1,5 +1,4 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'check_in_detail_info.dart';
 part 'user_points_detail_info.g.dart';
 
 @JsonSerializable()

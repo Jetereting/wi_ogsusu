@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:wi_ogsusu/entities/ufc_fighter_info.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class UfcFighterItem extends StatelessWidget{
 

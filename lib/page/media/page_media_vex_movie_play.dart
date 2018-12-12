@@ -1,19 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:wi_ogsusu/locale/translations.dart';
-import 'package:dio/dio.dart';
-import 'package:wi_ogsusu/constant.dart';
-import 'package:wi_ogsusu/entities/epg_info.dart';
-import 'package:wi_ogsusu/entities/epg_detail_info.dart';
-import 'package:wi_ogsusu/common/utils/time_util.dart';
-import 'package:wi_ogsusu/entities/channel_info.dart';
-import 'dart:async';
-import 'package:wi_ogsusu/extension/token_master.dart';
 import 'package:chewie/chewie.dart';
 import 'package:video_player/video_player.dart';
-import 'package:wi_ogsusu/common/http_master.dart';
 import 'package:screen/screen.dart';
-import 'package:wi_ogsusu/common/utils/time_util.dart';
-
 
 class VexMoviePlayPage extends StatefulWidget {
 

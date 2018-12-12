@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:wi_ogsusu/common/utils/sp_util.dart';
 import 'package:wi_ogsusu/common/utils/modal_util.dart';
 import 'package:wi_ogsusu/locale/translations.dart';
 import 'package:dio/dio.dart';
 import 'package:wi_ogsusu/constant.dart';
-import 'package:wi_ogsusu/widget/background_login.dart';
-import 'package:wi_ogsusu/page/page_web_view.dart';
 
 class PageSignUp extends StatefulWidget{
 

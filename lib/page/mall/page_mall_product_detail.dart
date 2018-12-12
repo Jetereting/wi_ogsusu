@@ -89,7 +89,6 @@ class ProductDetailPageState extends State<ProductDetailPage> with AutomaticKeep
   }
 
   Widget buildDetail(){
-    var deviceSize = MediaQuery.of(context).size;
     return _productSkuInfoList.length <= 0 ?
     new Container(
       alignment: Alignment.center,

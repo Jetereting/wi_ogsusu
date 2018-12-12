@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wi_ogsusu/navigator.dart';
 import 'package:wi_ogsusu/common/utils/sp_util.dart';
-import 'package:fluro/fluro.dart';
 import 'package:wi_ogsusu/locale/translations.dart';
 import 'package:wi_ogsusu/common/utils/color_util.dart';
 import 'package:wi_ogsusu/entities/tool_info.dart';
@@ -12,7 +10,6 @@ import 'package:wi_ogsusu/page/my/vip/page_vip.dart';
 import 'package:wi_ogsusu/page/my/coin/page_coin.dart';
 import 'package:wi_ogsusu/page/my/credit_card/page_credit_card.dart';
 import 'package:wi_ogsusu/constant.dart';
-import 'package:wi_ogsusu/common/utils/time_util.dart';
 import 'package:dio/dio.dart';
 import 'package:wi_ogsusu/widget/my_event_item.dart';
 
@@ -25,7 +22,6 @@ class MyPage extends StatefulWidget{
 class MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin{
 
   Dio dio = new Dio();
-  bool _eventLoading = true;
   String _username = 'no login';
   String _repCode = '';
   String _validTime = '';
@@ -56,7 +52,6 @@ class MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin{
 
   Future<void> _getPopularEventData() async{
     setState(() {
-      _eventLoading = true;
     });
     String url = Constant.URL_POPULAR_EVENTS ;
     Response response = await dio.get(url, 
@@ -74,7 +69,6 @@ class MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin{
       List list = response.data['data'];
       if(mounted) {
         setState(() {
-          _eventLoading = false;
           _eventList = list.map((dataStr) {
             return EventInfo.fromJson(dataStr);
           }).toList();
@@ -84,7 +78,6 @@ class MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin{
       print(response.data['msg']);
       if(mounted) {
         setState(() {
-          _eventLoading = false;
         });
       }
     }
