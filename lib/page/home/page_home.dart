@@ -91,6 +91,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
         ),
         actions: <Widget>[
           PopupMenuButton<String>(
+            icon: Icon(Icons.language),
             onSelected: showMenuSelection,
             itemBuilder: (BuildContext context) => <PopupMenuItem<String>>[
               const PopupMenuItem<String>(

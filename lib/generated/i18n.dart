@@ -26,7 +26,7 @@ class S implements WidgetsLocalizations {
   String get MLB => "MLB";
   String get MLS => "MLS";
   String get MOVIES => "MOVIE GUIDE";
-  String get MOVIES_PLUS => "MOVIES+";
+  String get MOVIES_PLUS => "MOVIES";
   String get NASCAR => "NASCAR";
   String get NBA => "NBA";
   String get NFL => "NFL";
@@ -123,7 +123,7 @@ class cs extends S {
   @override
   String get vip => "VIP";
   @override
-  String get MOVIES_PLUS => "MOVIES+";
+  String get MOVIES_PLUS => "MOVIES";
   @override
   String get MOVIES => "MOVIE GUIDE";
   @override
@@ -263,7 +263,7 @@ class es extends S {
   @override
   String get vip => "VIP";
   @override
-  String get MOVIES_PLUS => "MOVIES+";
+  String get MOVIES_PLUS => "MOVIES";
   @override
   String get MOVIES => "MOVIE GUIDE";
   @override
@@ -399,7 +399,7 @@ class zh extends S {
   @override
   String get vip => "会员";
   @override
-  String get MOVIES_PLUS => "电影+";
+  String get MOVIES_PLUS => "电影";
   @override
   String get MOVIES => "电影";
   @override

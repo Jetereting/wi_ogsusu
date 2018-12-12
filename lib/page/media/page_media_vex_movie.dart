@@ -27,7 +27,7 @@ class _PageVexMovieState extends State<PageVexMovie> with AutomaticKeepAliveClie
 
   List<VexGenresInfo> vexGenresList = [];
   List<VexMovieInfo> vexMovieList = [];
-  List<String> vexYearList = ['All'];
+  List<String> vexYearList = ['  All  '];
 
   String currentGenres = 'Recently';
   String currentYear = '2018';
@@ -100,6 +100,13 @@ class _PageVexMovieState extends State<PageVexMovie> with AutomaticKeepAliveClie
     }
   }
 
+  @override
+  void initState() {
+    super.initState();
+    generateYears();
+    _getVexGenresData();
+    _getVexMoviesData();
+  }
 
   Future<void> _getVexMoviePlayUrl(VexMovieInfo movieInfo) async {
     setState(() {
@@ -113,6 +120,9 @@ class _PageVexMovieState extends State<PageVexMovie> with AutomaticKeepAliveClie
       int code = result.code;
       if (code != 200) {
         print(result.data);
+        setState(() {
+          _plaUrlLoading = false;
+        });
         return;
       }
       var d = json.decode(result.data);
@@ -121,6 +131,12 @@ class _PageVexMovieState extends State<PageVexMovie> with AutomaticKeepAliveClie
         return;
       }
       List dataList = d['data'];
+      if(dataList == null){
+        setState(() {
+          _plaUrlLoading = false;
+        });
+        return;
+      }
       List<VexMoviePlayInfo> playList = dataList.map((item){
         return VexMoviePlayInfo.fromJson(item);
       }).toList();
@@ -137,17 +153,12 @@ class _PageVexMovieState extends State<PageVexMovie> with AutomaticKeepAliveClie
 
   }
 
-  @override
-  void initState() {
-    super.initState();
-    generateYears();
-    _getVexGenresData();
-    _getVexMoviesData();
-  }
-
   void replyUrl(String url, String label){
     print(url);
     HttpMaster.instance.getResponse(url).then((response){
+      setState(() {
+        _plaUrlLoading = false;
+      });
       List<String> rr = response.data.toString().split('\n');
       String url1 = rr[2];
       print(url1);
@@ -235,11 +246,11 @@ class _PageVexMovieState extends State<PageVexMovie> with AutomaticKeepAliveClie
             fontSize: 11.0,
             color: Colors.white
         ),
-        selected: currentYear == year,
+        selected: currentYear == year.trim(),
         selectedColor: Colors.redAccent[400],
         onSelected: (bool value) {
           setState(() {
-            currentYear = value ? year : '';
+            currentYear = value ? year.trim() : '';
             _getVexMoviesData();
           });
         },
