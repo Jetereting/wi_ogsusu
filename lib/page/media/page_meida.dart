@@ -114,98 +114,131 @@ class _MediaPageState extends State<MediaPage> with SingleTickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.redAccent[400],
-        title: new Text(Translations.of(context).text('media')),
-        centerTitle: false,
-        bottom: new TabBar(
-            controller: _tabController,
-            isScrollable: true,
-            indicatorColor: Color(0xFFEEEEEE),
-            labelColor: Colors.white,
-            unselectedLabelColor: Colors.white54,
-            tabs: _tabs.map((MediaInfo mediaInfo) {
-              return new Tab(
-                child: new Container(
-                  child: Text(
-                    Translations.of(context).text(mediaInfo.label),
-                    style: TextStyle(
-                      fontSize: 16.0,
-                    ),
-                  ),
-                ),
-              );
-            }).toList()
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: (){
-              getSpBool(Constant.SP_KEY_MEDIA_ACTIVATED).then((load){
-                if(load){
-                  showNotice(context, 'new feature was activated');
-                }else{
-                  Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
-                    return new PageFeatureActivate(2);
-                  }));
-                }
-              });
-            },
-          ),
-        ],
-      ),
-      body: new TabBarView(
-        controller: _tabController,
-        children: mediaTabPages(),
-      ),
-    );
-
-//    return new Column(
-//      children: <Widget>[
-//        Container(
-//          color: Colors.redAccent[400],
-//            width: double.infinity,
-//          height: 36.0,
-//        ),
-//        Container(
-//          color: Colors.redAccent[400],
-//          width: double.infinity,
-//          height: 26.0,
-//          alignment: Alignment.center,
-//          child: new TabBar(
-//              controller: _tabController,
-//              isScrollable: true,
-//              indicatorColor: Color(0xFFFFFFFF),
-//              indicatorWeight: 3.0,
-//              labelColor: Colors.white,
-//              labelStyle: TextStyle(
-//                fontWeight: FontWeight.w500
-//              ),
-//              unselectedLabelColor: Colors.white54,
-//              tabs: _tabs.map((MediaInfo mediaInfo) {
-//                return new Tab(
-//                  child: new Container(
-//                    child: Text(
-//                      Translations.of(context).text(mediaInfo.label),
-//                      style: TextStyle(
-//                        fontSize: 16.0,
-//                      ),
+//    return new Scaffold(
+//      appBar: new AppBar(
+//        automaticallyImplyLeading: false,
+//        backgroundColor: Colors.redAccent[400],
+//        title: new Text(Translations.of(context).text('media')),
+//        centerTitle: false,
+//        bottom: new TabBar(
+//            controller: _tabController,
+//            isScrollable: true,
+//            indicatorColor: Color(0xFFEEEEEE),
+//            labelColor: Colors.white,
+//            unselectedLabelColor: Colors.white54,
+//            tabs: _tabs.map((MediaInfo mediaInfo) {
+//              return new Tab(
+//                child: new Container(
+//                  child: Text(
+//                    Translations.of(context).text(mediaInfo.label),
+//                    style: TextStyle(
+//                      fontSize: 16.0,
 //                    ),
 //                  ),
-//                );
-//              }).toList()
-//          ),
+//                ),
+//              );
+//            }).toList()
 //        ),
-//        Expanded(
-//            child: new TabBarView(
-//              controller: _tabController,
-//              children: mediaTabPages(),
-//            ),
-//        )
-//      ],
+//        actions: <Widget>[
+//          IconButton(
+//            icon: Icon(Icons.add),
+//            onPressed: (){
+//              getSpBool(Constant.SP_KEY_MEDIA_ACTIVATED).then((load){
+//                if(load){
+//                  showNotice(context, 'new feature was activated');
+//                }else{
+//                  Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
+//                    return new PageFeatureActivate(2);
+//                  }));
+//                }
+//              });
+//            },
+//          ),
+//        ],
+//      ),
+//      body: new TabBarView(
+//        controller: _tabController,
+//        children: mediaTabPages(),
+//      ),
 //    );
+
+    return new Column(
+      children: <Widget>[
+        Container(
+          color: Colors.redAccent[400],
+          width: double.infinity,
+          height: 20.0,
+        ),
+        Container(
+          color: Colors.redAccent[400],
+          width: double.infinity,
+          height: 50.0,
+          padding: EdgeInsets.only(left: 15.0, right: 0.0),
+          child: Row(
+            children: <Widget>[
+              Text(
+                  Translations.of(context).text('media'),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w500
+                ),
+              ),
+              Expanded(child: Container(),),
+              IconButton(
+                icon: Icon(Icons.add),
+                onPressed: (){
+                  getSpBool(Constant.SP_KEY_MEDIA_ACTIVATED).then((load){
+                    if(load){
+                      showNotice(context, 'new feature was activated');
+                    }else{
+                      Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
+                        return new PageFeatureActivate(2);
+                      }));
+                    }
+                  });
+                },
+              ),
+            ],
+          ),
+        ),
+        Container(
+          color: Colors.redAccent[400],
+          width: double.infinity,
+          height: 26.0,
+          alignment: Alignment.center,
+          child: new TabBar(
+              controller: _tabController,
+              isScrollable: true,
+              indicatorColor: Color(0xFFFFFFFF),
+              indicatorWeight: 3.0,
+              labelColor: Colors.white,
+              labelStyle: TextStyle(
+                fontWeight: FontWeight.w500
+              ),
+              unselectedLabelColor: Colors.white54,
+              tabs: _tabs.map((MediaInfo mediaInfo) {
+                return new Tab(
+                  child: new Container(
+                    child: Text(
+                      Translations.of(context).text(mediaInfo.label),
+                      style: TextStyle(
+                        fontSize: 16.0,
+                      ),
+                    ),
+                  ),
+                );
+              }).toList()
+          ),
+        ),
+        Expanded(
+            child: new TabBarView(
+              controller: _tabController,
+              children: mediaTabPages(),
+            ),
+        )
+      ],
+    );
   }
 
 

@@ -37,7 +37,6 @@ class _SportsGamesPageState extends State<SportsGamesPage> with AutomaticKeepAli
   bool loadable = true;
   FocusNode focusNode = FocusNode();
 
-
   _SportsGamesPageState(SportEventInfo sportEventInfo){
     _sportEventInfo = sportEventInfo;
   }
@@ -215,9 +214,8 @@ class _SportsGamesPageState extends State<SportsGamesPage> with AutomaticKeepAli
 
   Widget buildFilter(){
     return Container(
-      padding: EdgeInsets.only(left: 8.0, right: 8.0, bottom: 3.0, top: 12.0),
+      padding: EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
       width: double.infinity,
-      height: 42.0,
       child: new TextField(
         focusNode: focusNode,
         style: new TextStyle(

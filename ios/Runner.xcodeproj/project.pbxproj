@@ -115,6 +115,12 @@
 		CD74372821AE704A002A76BB /* EpgDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpgDetailCell.swift; sourceTree = "<group>"; };
 		CD74372A21AE7093002A76BB /* EpgDetailProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpgDetailProvider.swift; sourceTree = "<group>"; };
 		CD74372C21AE70EE002A76BB /* EpgDetailInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpgDetailInfo.swift; sourceTree = "<group>"; };
+		CD7AB5C321C0FAE100629273 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		CD7AB5C421C0FAE100629273 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		CD7AB5C521C0FAEB00629273 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		CD7AB5C621C0FAEB00629273 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		CD7AB5C721C0FAF800629273 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Main.strings; sourceTree = "<group>"; };
+		CD7AB5C821C0FAF900629273 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		CDF5E668219037FB00FEB7BE /* VideoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoController.swift; sourceTree = "<group>"; };
 		CDF5E66A21903CF700FEB7BE /* ControllerUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerUtil.swift; sourceTree = "<group>"; };
 		FE9E2AD0273FC3337A4C5EFB /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -363,7 +369,7 @@
 				"${BUILT_PRODUCTS_DIR}/BMPlayer/BMPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
-				"${PODS_ROOT}/../.symlinks/flutter/ios-release/Flutter.framework",
+				"${PODS_ROOT}/../.symlinks/flutter/ios/Flutter.framework",
 				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
@@ -485,6 +491,9 @@
 			isa = PBXVariantGroup;
 			children = (
 				97C146FB1CF9000F007C117D /* Base */,
+				CD7AB5C321C0FAE100629273 /* zh-Hans */,
+				CD7AB5C521C0FAEB00629273 /* es */,
+				CD7AB5C721C0FAF800629273 /* cs */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -493,6 +502,9 @@
 			isa = PBXVariantGroup;
 			children = (
 				97C147001CF9000F007C117D /* Base */,
+				CD7AB5C421C0FAE100629273 /* zh-Hans */,
+				CD7AB5C621C0FAEB00629273 /* es */,
+				CD7AB5C821C0FAF900629273 /* cs */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

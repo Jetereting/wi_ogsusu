@@ -8,7 +8,7 @@ import 'page_sports_games.dart';
 import 'package:dio/dio.dart';
 import 'package:wi_ogsusu/constant.dart';
 import 'package:wi_ogsusu/sql/sprots_event_dao.dart';
-import 'page_recommend_sports.dart';
+import 'page_sports_news.dart';
 import 'package:wi_ogsusu/page/page_feature_activate.dart';
 import 'package:wi_ogsusu/common/utils/modal_util.dart';
 
@@ -66,7 +66,7 @@ class _SportsPageState extends State<SportsPage> with SingleTickerProviderStateM
   void initTabPages(){
     _tabPages = _tabs.map((SportEventInfo sportEventInfo) {
       if(sportEventInfo.id == 0){
-        return RecommendSportsPage();
+        return PageSportsNews();
       }else {
         return new SportsGamesPage(sportEventInfo);
       }
@@ -123,97 +123,134 @@ class _SportsPageState extends State<SportsPage> with SingleTickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        elevation: 6.0,
-        automaticallyImplyLeading: false,
-        backgroundColor: Color(0xFF0A0126),
-        title: new Text(Translations.of(context).text('sports_guide')),
-        centerTitle: false,
-        bottom: new TabBar(
-          controller: _tabController,
-          isScrollable: true,
-          indicatorColor: Colors.transparent,
-          labelColor: Colors.deepOrange,
-          unselectedLabelColor: Colors.white54,
-          tabs: _tabs.map((SportEventInfo sportEventInfo) {
-            return new Tab(
-              child: new Container(
-                child: Text(
-                  sportEventInfo.label,
-                  style: TextStyle(
-                    fontSize: 16.0,
-                  ),
+//    return new Scaffold(
+//      appBar: new AppBar(
+//        elevation: 6.0,
+//        automaticallyImplyLeading: false,
+//        backgroundColor: Color(0xFF0A0126),
+//        title: new Text(Translations.of(context).text('sports_guide')),
+//        centerTitle: false,
+//        bottom: new TabBar(
+//          controller: _tabController,
+//          isScrollable: true,
+//          indicatorColor: Colors.transparent,
+//          labelColor: Colors.deepOrange,
+//          unselectedLabelColor: Colors.white54,
+//          tabs: _tabs.map((SportEventInfo sportEventInfo) {
+//            return new Tab(
+//              child: new Container(
+//                child: Text(
+//                  sportEventInfo.label,
+//                  style: TextStyle(
+//                    fontSize: 16.0,
+//                  ),
+//                ),
+//              ),
+//            );
+//          }).toList()
+//        ),
+//        actions: <Widget>[
+//          IconButton(
+//            icon: Icon(Icons.add),
+//            onPressed: (){
+//              getSpBool(Constant.SP_KEY_SPORTS_ACTIVATED).then((load){
+//                if(load){
+//                  showNotice(context, 'new feature was activated');
+//                }else{
+//                  Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
+//                    return new PageFeatureActivate(1);
+//                  }));
+//                }
+//              });
+//            },
+//          ),
+//        ],
+//      ),
+//      body: new TabBarView(
+//        controller: _tabController,
+//        children: _tabPages,
+//      ),
+//    );
+
+
+
+    return new Column(
+      children: <Widget>[
+        Container(
+          color: Color(0xFF0A0126),
+          width: double.infinity,
+          height: 20.0,
+        ),
+        Container(
+          color: Color(0xFF0A0126),
+          width: double.infinity,
+          height: 50.0,
+          padding: EdgeInsets.only(left: 15.0, right: 0.0),
+          child: Row(
+            children: <Widget>[
+              Text(
+                Translations.of(context).text('sports_guide'),
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w500
                 ),
               ),
-            );
-          }).toList()
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: (){
-              getSpBool(Constant.SP_KEY_SPORTS_ACTIVATED).then((load){
-                if(load){
-                  showNotice(context, 'new feature was activated');
-                }else{
-                  Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
-                    return new PageFeatureActivate(1);
-                  }));
-                }
-              });
-            },
+              Expanded(child: Container(),),
+              IconButton(
+                icon: Icon(Icons.add),
+                onPressed: (){
+                  getSpBool(Constant.SP_KEY_SPORTS_ACTIVATED).then((load){
+                    if(load){
+                      showNotice(context, 'new feature was activated');
+                    }else{
+                      Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
+                        return new PageFeatureActivate(1);
+                      }));
+                    }
+                  });
+                },
+              ),
+            ],
           ),
-        ],
-      ),
-      body: new TabBarView(
-        controller: _tabController,
-        children: _tabPages,
-    ),
+        ),
+        Container(
+          color: Color(0xFF0A0126),
+          width: double.infinity,
+          height: 26.0,
+          alignment: Alignment.center,
+          child: new TabBar(
+              controller: _tabController,
+              isScrollable: true,
+              indicatorColor: Color(0xFFFFFFFF),
+              indicatorWeight: 3.0,
+              labelColor: Colors.white,
+              labelStyle: TextStyle(
+                  fontWeight: FontWeight.w500
+              ),
+              unselectedLabelColor: Colors.white54,
+              tabs: _tabs.map((SportEventInfo sportEventInfo) {
+                return new Tab(
+                  child: new Container(
+                    child: Text(
+                      Translations.of(context).text(sportEventInfo.label),
+                      style: TextStyle(
+                        fontSize: 16.0,
+                      ),
+                    ),
+                  ),
+                );
+              }).toList()
+          ),
+        ),
+        Expanded(
+          child: new TabBarView(
+            controller: _tabController,
+            children: _tabPages,
+          ),
+        )
+      ],
     );
-
-//    return new Column(
-//      children: <Widget>[
-//        Container(
-//          color: Color(0xFF0A0126),
-//          width: double.infinity,
-//          height: 36.0,
-//        ),
-//        Container(
-//          color: Color(0xFF0A0126),
-//          width: double.infinity,
-//          height: 30.0,
-//          child: new TabBar(
-//              controller: _tabController,
-//              isScrollable: true,
-//              indicatorColor: Colors.transparent,
-//              labelColor: Colors.deepOrange,
-//              labelStyle: TextStyle(
-//                  fontWeight: FontWeight.w500
-//              ),
-//              unselectedLabelColor: Colors.white54,
-//              tabs: _tabs.map((SportEventInfo sportEventInfo) {
-//                return new Tab(
-//                  child: new Container(
-//                    child: Text(
-//                      sportEventInfo.label,
-//                      style: TextStyle(
-//                        fontSize: 16.0,
-//                      ),
-//                    ),
-//                  ),
-//                );
-//              }).toList()
-//          ),
-//        ),
-//        Expanded(
-//          child: new TabBarView(
-//            controller: _tabController,
-//            children: _tabPages,
-//          ),
-//        )
-//      ],
-//    );
   }
 
 

@@ -124,4 +124,12 @@ class TimeUtil{
     }
     return time;
   }
+
+
+
+  static String toStr(int timestamp) {
+    var format = new DateFormat('yyyy-MM-dd HH:mm a', 'en_US');
+    var date = new DateTime.fromMillisecondsSinceEpoch(timestamp * 1000);
+    return format.format(date);
+  }
 }

@@ -204,9 +204,8 @@ class _MediaEpgPageState extends State<MediaEpgPage> with AutomaticKeepAliveClie
 
   Widget buildFilter(){
     return Container(
-      padding: EdgeInsets.only(left: 8.0, right: 8.0, bottom: 3.0, top: 12.0),
+      padding: EdgeInsets.only(left: 8.0, right: 8.0, bottom: 3.0),
       width: double.infinity,
-      height: 60.0,
       child: new TextField(
         focusNode: focusNode,
         style: new TextStyle(

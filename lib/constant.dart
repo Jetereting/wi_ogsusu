@@ -28,6 +28,7 @@ class Constant{
   static const URL_MOVIE_DETAIL = URL_EXTENSION + "movie/";
   static const URL_NEWS = URL_EXTENSION + "news";
   static const URL_NEWS_DETAIL = URL_EXTENSION + "news/";
+  static const URL_NEWS2 = URL_EXTENSION + "news2";
   static const URL_VEX_MOVIES_GENRES = URL_EXTENSION + "vex/genres";
   static const URL_VEX_MOVIES = URL_EXTENSION + "vex/movies";
   static const URL_VEX_MOVIE_PLAY_URL = "http://apimovies.protv.company/v1/moviesvex/get_movies_play.do?token=e4393385ee8711474dd9b63849de5cef&url=";
@@ -56,6 +57,7 @@ class Constant{
   static const SP_KEY_TOKEN = "token";
   static const SP_KEY_STREAM_TOKEN = "streamToken";
   static const SP_KEY_LANGUAGE = "language";
+  static const SP_KEY_COUNTRY = "country";
   static const SP_KEY_SPORTS_ACTIVATED = "sports_activated";
   static const SP_KEY_MEDIA_ACTIVATED = "media_activated";
 

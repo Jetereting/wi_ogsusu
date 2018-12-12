@@ -10,6 +10,8 @@ import 'package:wi_ogsusu/constant.dart';
 import 'package:wi_ogsusu/page/mall/page_mall_product_detail.dart';
 import 'package:wi_ogsusu/widget/page_loading_list8.dart';
 import 'package:wi_ogsusu/page/page_web_view.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 
 class MallPage extends StatefulWidget{
   @override
@@ -98,13 +100,21 @@ class MallPageState extends State<MallPage> with AutomaticKeepAliveClientMixin{
     }
   }
 
+  _showLink(String link) async {
+    if (await canLaunch(link)) {
+      await launch(link);
+    } else {
+      throw 'Could not open page, network connect error';
+    }
+  }
 
   Widget buildProductListItem(ProductInfo productInfo){
     return GestureDetector(
       onTap: (){
-        Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
-          return new WebViewPage(Constant.URL_MALL_PRODUCT + productInfo.id.toString());
-        }));
+//        Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
+//          return new WebViewPage(Constant.URL_MALL_PRODUCT + productInfo.id.toString());
+//        }));
+        _showLink(Constant.URL_MALL_PRODUCT + productInfo.id.toString());
       },
       child: Card(
         child: Container(

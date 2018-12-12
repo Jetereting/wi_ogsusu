@@ -57,6 +57,8 @@ flutter:
   assets:
     - res/values/strings_en.arb
     - res/values/strings_zh.arb
+    - res/values/strings_es.arb
+    - res/values/strings_cs.arb
     - res/img/icon_ogsusu.jpg
     - res/img/icon_ogsusu.png
     - res/img/splash.jpg

@@ -51,6 +51,8 @@ class MyAppState extends State<MyApp>{
       supportedLocales: [
         const Locale('en', ''),
         const Locale('zh', ''),
+        const Locale('es', ''),
+        const Locale('cs', ''),
       ],
       onGenerateRoute: RouteNavigator.router.generator,
       theme: new ThemeData(

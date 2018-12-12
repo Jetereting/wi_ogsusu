@@ -40,7 +40,7 @@ class TranslationsDelegate extends LocalizationsDelegate<Translations> {
   const TranslationsDelegate();
 
   @override
-  bool isSupported(Locale locale) => ['en', 'zh'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => ['en', 'zh', 'es', 'cs'].contains(locale.languageCode);
 
   @override
   Future<Translations> load(Locale locale) => Translations.load(locale);

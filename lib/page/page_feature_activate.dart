@@ -149,6 +149,7 @@ class PageFeatureActivateState extends State<PageFeatureActivate>{
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             tfLink,
+            Text('No resource links? Please contact your sponsor!!!'),
             _loading ? loading : btConfirm,
           ],
         ),
