@@ -62,5 +62,6 @@
   "science": "Science",
   "health": "Health",
   "entertainment": "Entertainment",
+  "payment": "Payment",
   "play_list": "Play List"
 }

@@ -90,6 +90,9 @@ flutter:
     - res/img/icons8_cheap_96.png
     - res/img/icons8_vip_96.png
     - res/img/icons8_calendar_plus_96.png
+    - res/img/icons8_crown_96.png
+    - res/img/icons8_membership_96.png
+    - res/img/bg_vip_section.jpg
     - res/img/event_1.jpg
     - res/img/banner_check_in.jpg
     - res/img/bg_card.png

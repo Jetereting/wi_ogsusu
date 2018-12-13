@@ -16,14 +16,15 @@ class BackgroundLogin extends StatelessWidget {
           children: <Widget>[
             new Container(
               decoration: new BoxDecoration(
-                  gradient: new LinearGradient(
-                    colors: [
-                      Color(0xFF451671),
-                      Color(0xFF0A0126),
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  )),
+                gradient: new LinearGradient(
+                  colors: [
+                    Color(0xFF451671),
+                    Color(0xFF0A0126),
+                  ],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                )
+              ),
             ),
             showIcon ? new Center(
               child: SizedBox(

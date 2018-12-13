@@ -4,6 +4,8 @@ class Constant{
   static const URL_OGSUSU_USER_REGISTER = URL_OGSUSU + "user/register";
   static const URL_OGSUSU_USER_VERIFY = URL_OGSUSU + "user/verify/";
   static const URL_OGSUSU_TOKEN = URL_OGSUSU + "token/verify/";
+  static const URL_OGSUSU_VIPS = URL_OGSUSU + "vips";
+  static const URL_OGSUSU_VIP_PURCHASE = URL_OGSUSU + "vip/purchase/";
 
 
   static const URL_CUSTOMER = "http://customer.vipnow.work/";
@@ -50,7 +52,7 @@ class Constant{
   static const SP_KEY_USER_ID = "userId";
   static const SP_KEY_USERNAME = "username";
   static const SP_KEY_REP_CODE = "repCode";
-  static const SP_KEY_LEVEL = "level";
+  static const SP_KEY_VIP_LEVEL = "vip_level";
   static const SP_KEY_VALID_TIME = "validTime";
   static const SP_KEY_TOKEN = "token";
   static const SP_KEY_STREAM_TOKEN = "streamToken";

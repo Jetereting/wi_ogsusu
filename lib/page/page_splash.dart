@@ -34,7 +34,7 @@ class SplashState extends State<Splash>{
       String validTime = response.data['data']['validTime'];
       int level = response.data['data']['level'];
       setSpString(Constant.SP_KEY_VALID_TIME, validTime);
-      setSpInt(Constant.SP_KEY_LEVEL, level);
+      setSpInt(Constant.SP_KEY_VIP_LEVEL, level);
       print(validTime);
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => PageTab()),

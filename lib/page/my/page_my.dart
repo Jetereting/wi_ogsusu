@@ -23,6 +23,7 @@ class MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin{
 
   Dio dio = new Dio();
   String _username = 'no login';
+  int _vipLevel = 0;
   String _repCode = '';
   String _validTime = '';
   List<EventInfo> _eventList = [];
@@ -85,10 +86,14 @@ class MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin{
 
 
   getLocalUserInfo() async{
+    var vipLevel = await getSpInt(Constant.SP_KEY_VIP_LEVEL);
     var name = await getSpString(Constant.SP_KEY_USERNAME);
     var repCode = await getSpString(Constant.SP_KEY_REP_CODE);
     var validTime = await getSpString(Constant.SP_KEY_VALID_TIME);
     setState(() {
+      if(vipLevel != null) {
+        _vipLevel = vipLevel;
+      }
       if(name != null) {
         _username = name;
       }
@@ -107,7 +112,10 @@ class MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin{
   }
 
   void clickToolGridItem(ToolInfo toolInfo){
-    print(toolInfo);
+    if(_username == 'no login'){
+      Navigator.of(context).pushNamed('/login');
+      return;
+    }
     if(toolInfo.action == 1){
       Navigator.push(context, new MaterialPageRoute(builder: (BuildContext context){
         return new CheckInPage();
@@ -163,7 +171,6 @@ class MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin{
 
   @override
   Widget build(BuildContext context) {
-
     Widget sectionAvatar = new AspectRatio(
       aspectRatio: 5/1.5,
       child: new Stack(
@@ -197,28 +204,34 @@ class MyPageState extends State<MyPage> with AutomaticKeepAliveClientMixin{
                     Text(
                       _username,
                       style: TextStyle(
-                        fontSize: 25.0,
+                        fontSize: 28.0,
                         fontWeight: FontWeight.w600
                       ),
                     ),
                     SizedBox(height: 3.0,),
-                    Text(
-                      Translations.of(context).text('ValidTime') + _validTime,
-                      style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.w600
-                      ),
+                    Row(
+                      children: <Widget>[
+                        Image.asset('res/img/icons8_crown_96.png', width: 26.0, height: 26.0,),
+                        SizedBox(width: 3.0,),
+                        Text(
+                          'VIP' + _vipLevel.toString(),
+                          style: TextStyle(
+                            color: Colors.yellow[700],
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w600
+                          ),
+                        ),
+                      ],
                     ),
-                    SizedBox(height: 3.0,),
-                    Text(
-                      Translations.of(context).text('RepCode') + _repCode,
-                      style: TextStyle(
-                        color: Colors.deepOrange,
-                        fontSize: 12.0,
-                        fontWeight: FontWeight.w600
-                      ),
-                    ),
+//                    SizedBox(height: 3.0,),
+//                    Text(
+//                      Translations.of(context).text('RepCode') + _repCode,
+//                      style: TextStyle(
+//                        color: Colors.deepOrange,
+//                        fontSize: 12.0,
+//                        fontWeight: FontWeight.w600
+//                      ),
+//                    ),
                   ],
                 ),
               ],

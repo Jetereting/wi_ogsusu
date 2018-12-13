@@ -68,6 +68,7 @@ class S implements WidgetsLocalizations {
   String get more => "More";
   String get my => "My";
   String get password => "password";
+  String get payment => "Payment";
   String get phone => "phone";
   String get play_list => "Play List";
   String get points => "POINTS: ";
@@ -118,6 +119,8 @@ class cs extends S {
   String get MLS => "MLS";
   @override
   String get checked => "Checked";
+  @override
+  String get payment => "Payment";
   @override
   String get sports_guide => "Sports Guide";
   @override
@@ -259,6 +262,8 @@ class es extends S {
   @override
   String get checked => "Checked";
   @override
+  String get payment => "Payment";
+  @override
   String get sports_guide => "Sports Guide";
   @override
   String get vip => "VIP";
@@ -394,6 +399,8 @@ class zh extends S {
   String get MLS => "MLS";
   @override
   String get checked => "已签到";
+  @override
+  String get payment => "支付";
   @override
   String get sports_guide => "赛程";
   @override
